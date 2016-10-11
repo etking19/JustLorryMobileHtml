@@ -1,0 +1,119 @@
+<stepone class="app-page">
+    
+    <header class="header-bar">
+        <button class="btn pull-left icon icon-arrow-back" data-navigation="$previous-page"></button>
+        <div class="center">
+            <h1 class="title" data-i18n="text: stepone_title"></h1>
+        </div>
+        <button class="btn pull-right" data-popover-id="language-popover">
+            <img src="res/img/navibar_icon_language_96x96.png" style="max-height: 80%; margin-top: 10%"/>
+        </button>
+        <script>
+          ga('send', 'pageview', 'mobile/stepone');
+        </script>
+    </header>
+
+    <!-- whole division push to left if left panel appeared-->
+    <div class="content pad-content">
+
+            <!-- page contents -->
+            <div class="padded-full">
+
+                <div class="row" style="text-align: center">
+                    <div class="phone-6 tablet-6 column">
+                        <div style="padding-right: 10px">
+                            <button id="stepone-standard" class="btn delivery-selection selected" data-order="stepone-standard">
+                                <div style="margin-top:35%" data-order="stepone-standard">
+                                    <a id="stepone-standard-text" class="delivery-selection-text selected" data-i18n="text: service_standard" data-order="stepone-standard"></a>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="phone-6 tablet-6 column">
+                        <div style="padding-left: 10px">
+                            <button id="stepone-disposal" class="btn delivery-selection" data-order="stepone-standard">
+                                <div style="margin-top:35%" data-order="stepone-disposal">
+                                    <a id="stepone-disposal-text" class="delivery-selection-text" data-i18n="text: service_disposal" data-order="stepone-disposal"></a>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fit-parent row padded-top">
+
+                    <div class="phone-4 tablet-4 column delivery-size-div">
+                        <button id="stepone-one-tonne" class="btn delivery-size-text selected" data-i18n="text: lorry_type1" data-order="stepone-one-tonne"></button>
+                    </div>
+
+                    <div class="phone-4 tablet-4 column delivery-size-div">
+                        <button id="stepone-three-tonne" class="btn delivery-size-text" data-i18n="text: lorry_type2" data-order="stepone-three-tonne"></button>
+                    </div>
+
+                    <div class="phone-4 tablet-4 column delivery-size-div">
+                        <button id="stepone-five-tonne" class="btn delivery-size-text" data-i18n="text: lorry_type3" data-order="stepone-five-tonne"></button>
+                    </div>
+                </div>
+
+                <div class="padded-top" id="1tonne_info" style="text-align:center">
+                    <a class="description-text" data-i18n="text: lorry_dim_type1"></a>
+                    <br/>
+                    <a class="description-text" data-i18n="text: lorry_desc_type1"></a>
+                </div>
+
+                <div class="padded-top" id="3tonne_info" style="text-align:center">
+                    <a class="description-text" data-i18n="text: lorry_dim_type2"></a>
+                    <br/>
+                    <a class="description-text" data-i18n="text: lorry_desc_type2"></a>
+                </div>
+
+                <div class="padded-top"  id="5tonne_info" style="text-align:center">
+                    <a class="description-text" data-i18n="text: lorry_dim_type3"></a>
+                    <br/>
+                    <a class="description-text" data-i18n="text: lorry_desc_type3"></a>
+                </div>
+
+                <!-- more info button -->
+                <div class="fit-parent" style="text-align:center">
+                    <button class="btn more-info" data-i18n="text: lorry_details" data-panel-id="lorry-size-info">
+                    </button>
+                </div>
+
+                <!-- Postcode -->
+                <div class="padded-full">
+                    <div class="fit-parent row" style="text-align:center">
+                        <div class="phone-12 tablet-12 column">
+                            <input id="location_from" type="number" minlength="5" maxlength="5" data-i18n="placeholder: location_from" style="font-size:1.5em; text-align:center" onkeypress="validateNumber(event)" required>
+                        </div>
+                    </div>
+
+                    <div id="location_div_to" class="fit-parent row" style="text-align:center">
+                        <div class="phone-12 tablet-12 column">
+                            <input id="location_to" type="number" minlength="5" maxlength="5" data-i18n="placeholder: location_to" style="font-size:1.5em; text-align:center" onkeypress="validateNumber(event)" required>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+    </div> <!-- content close --> 
+
+    <!-- bottom panel absolute -->
+    <div class="fit-parent no-padding" style="position: absolute; bottom:0px;">
+        <div class="row">
+            <button id="stepone-promocode" class="btn btn-flat phone-4 tablet-4 column promo-code" data-i18n="text: bottom_promo" data-order="stepone-promocode" type="button"></button>
+
+            <div class="phone-4 tablet-4 column text-center">
+                <a class="price-final">MYR</a>
+                <a id="stepone-final-price" class="price-final"></a>
+            </div>
+
+            <button id="stepone-pricedetails" class="btn btn-flat phone-4 tablet-4 column price-details" data-i18n="text: bottom_details" data-panel-id="panel-price-details" type="button"></button>
+        </div>
+
+        <!-- bottom navigation buttons -->
+        <div class="row">
+            <button id="next" class="btn primary phone-12 tablet-12" style="border-radius:0px; float:center" data-i18n="text: bottom_next" data-order="stepone-next"></button>
+        </div>
+
+    </div>
+</stepone>

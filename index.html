@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="res/img/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="res/img/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="res/img/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="res/img/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="res/img/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="res/img/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="res/img/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="res/img/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="res/img/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="res/img/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="res/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="res/img/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="res/img/favicon-16x16.png">
+        <link rel="manifest" href="res/img/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="res/img/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <meta name="description" content="Delivery service operate under JUSTLORRY.COM">
+        <meta name="author" content="Just Supply Chain Berhad">
+
+        <link rel="stylesheet" href="dist/css/phonon.css" />
+        <link rel="stylesheet" href="dist/css/custom.css" />
+        <link rel="stylesheet" href="res/font-awesome-4.6.3/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <title>JustLorry</title>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-81918831-1', 'auto');
+        </script>
+
+    </head>
+    <body>
+
+        <!-- left panel -->
+        <div class="side-panel side-panel-left" data-expose-aside="left" data-disable="right" data-page="home" id="side-panel">
+            <header class="header-bar left-panel-header">
+                <button class="btn pull-right icon icon-close show-for-phone-only" data-side-panel-close="true"></button>
+                <div class="center">
+                    <img class="left-panel-logo" src="res/img/sidenavi_logo_256x190.png"></img>
+                </div>
+            </header>
+            <div class="content left-panel-content">
+                <ul class="list">
+                    <li data-panel-id="about_panel">
+                        <button class="padded-list btn-flat left-panel-desc" data-i18n="text: leftpanel_about" data-panel-id="about_panel"></button>
+                    </li>
+                </ul>
+                <div style="position: absolute; bottom: 0px; text-align: center; width: 100%; padding-bottom: 10px">
+                    <a data-i18n="text: leftpanel_version" class="left-panel-desc"></a>
+                    <a class="left-panel-desc">0.0.0.1</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- About panel -->
+        <div id="about_panel" class="panel-full">
+            <header class="header-bar">
+                <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
+                <div class="center">
+                    <h1 class="title" data-i18n="text: about_panel_title"></h1>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="padded-full">
+                    <div style="text-align: center">
+                        <img src="res/img/tp_icon_5_justlorry_128x64.png"></img>
+                    </div>
+                    <div style="text-align: left">
+                        <h5 data-i18n="text: about_panel_desc_1" class="about-desc"></h5>
+                        <h5 data-i18n="text: about_panel_desc_2" class="about-desc"></h5>
+                        <h5 data-i18n="text: about_panel_desc_3" class="about-desc"></h5>
+                    </div>
+                    <div style="text-align: center; width: 100%; padding-top:20px">
+                        <a class="btn delivery-size-text selected" href="mailto:care@justlorry.com?Subject=Enquiry" target="_top" data-i18n="text: about_panel_contact" style="padding-top: 5px;">
+                        </a>
+                        
+                    </div>
+                </div>
+            </div> <!-- end of content -->
+            <div class="fit-parent no-padding" style="position: absolute; bottom:0px; text-align: center">
+
+                <!-- bottom navigation buttons -->
+                <div class="row footer">
+                    <a data-i18n="text: footer_company"></a>
+                </div>
+
+            </div>
+        </div> <!-- end of about panel -->
+
+
+        <!--  lorry size info panel -->
+        <div id="lorry-size-info" class="panel-full">
+            <header class="header-bar">
+                <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
+                <div class="center">
+                    <h1 class="title" data-i18n="text: lorry_panel_title"></h1>
+                </div>
+            </header>
+            
+            <div class="content">
+                <div class="padded-full">
+                    <ul class="list">
+                        
+                        <!-- type 1 tonne -->
+                        <li>
+                            <i class="pull-right icon icon-expand-more"></i>
+                            <a class="padded-list truck-size-header" data-i18n="text: lorry_type1"></a>
+                            <div class="accordion-content">
+                                <a class="description-text custom-line-height truck-size-desc" data-i18n="text: lorry_dim_type1"></a>
+                                <a class="description-text custom-line-height truck-size-desc" data-i18n="text: lorry_desc_type1"></a>
+                                <div class="row" style="padding-bottom: 20px">
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_fridge_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_fridge"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_washingmachine_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_washing_machine"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_wardrobe_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_wardrobe"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_matress_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_matress"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center; float:left">
+                                        <image class="custom-line-height" src="res/img/ts_icon_sofa_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_sofa"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <!-- type 3 tonne -->
+                        <li>
+                            <i class="pull-right icon icon-expand-more"></i>
+                            <a class="padded-list truck-size-header" data-i18n="text: lorry_type2"></a>
+                            <div class="accordion-content">
+                                <a class="description-text custom-line-height truck-size-desc" data-i18n="text: lorry_dim_type2"></a>
+                                <a class="description-text custom-line-height truck-size-desc" data-i18n="text: lorry_desc_type2"></a>
+                                <div class="row" style="padding-bottom: 20px">
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_fridge_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_fridge"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_washingmachine_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_washing_machine"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_wardrobe_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_wardrobes"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_table_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_dining_table"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center; float:left">
+                                        <image class="custom-line-height" src="res/img/ts_icon_sofa_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_sofas"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <!-- type 5 tonne -->
+                        <li>
+                            <i class="pull-right icon icon-expand-more"></i>
+                            <a class="padded-list truck-size-header" data-i18n="text: lorry_type3"></a>
+                            <div class="accordion-content">
+                                <a class="description-text custom-line-height truck-size-desc" data-i18n="text: lorry_dim_type3"></a>
+                                <a class="description-text custom-line-height truck-size-desc" data-i18n="text: lorry_desc_type3"></a>
+                                <div class="row" style="padding-bottom: 20px">
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_fridge_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_fridge"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_washingmachine_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_washing_machine"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_wardrobe_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_wardrobes"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center;">
+                                        <image class="custom-line-height" src="res/img/ts_icon_matress_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_matresses"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center; float:left">
+                                        <image class="custom-line-height" src="res/img/ts_icon_table_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_dining_table"></a>
+                                    </div>
+                                    <div class="column phone-6 tablet-2 custom-line-height padded-top" style="text-align:center; float:left">
+                                        <image class="custom-line-height" src="res/img/ts_icon_lsofa_128x64.png" style="width:80%; height:auto;"></image>
+                                        <a class="truck-size-desc-item" data-i18n="text: lorry_panel_lshape_sofa"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- end of content -->
+        </div> <!-- end of lorry panel -->
+        
+        <!-- language popover -->
+        <div class="popover" id="language-popover">
+            <ul class="list">
+                <li class="lang-en">
+                    <a class="lang-en pull-left fa fa-language"></a>
+                    <a class="lang-en padded-list">English</a>
+                </li>
+                <li class="lang-ms">
+                    <a class="lang-ms pull-left fa fa-language"></a>
+                    <a class="lang-ms padded-list">Malay</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- price details panel -->
+        <div id="panel-price-details" class="panel-full">
+            <header class="header-bar">
+                <button class="btn pull-right icon icon-close" data-panel-close="true"></button>
+                <div class="center">
+                    <h1 class="title" data-i18n="text: bottom_details"></h1>
+                </div>
+            </header>
+
+            <div class="content">
+
+				<div class="padded-full">
+					<div class="price-transparent-header">
+						<a class="padded-left" data-i18n="text: panel_price_title"></a>
+					</div>
+					<div class="row">
+						
+						<div class="column phone-12 tablet-12 padded-top price-transparent-div">
+                            <div class="column phone-6 tablet-6">
+                                <img src="res/img/tp_icon_4_partner_128x64.png"></img>
+                                <br/>
+                                <a data-i18n="text: panel_price_partner"></a>
+                                <br />
+                                <a class="split-price">RM</a>
+                                <a id="price-partner" class="split-price">0</a>
+                            </div>
+                            <div class="column phone-6 tablet-6">
+                                <img src="res/img/tp_icon_5_justlorry_128x64.png"></img>
+                                <br/>
+                                <a data-i18n="text: panel_price_justlorry"></a>
+                                <br />
+                                <a class="split-price">RM</a>
+                                <a id="price-justlorry" class="split-price">0</a>
+                            </div>
+						</div>
+						
+						<div class="column phone-12 tablet-12 padded-top price-transparent-div">
+                            <div class="column phone-4 tablet-4" >
+                                <img src="res/img/tp_icon_3_labor_128x64.png"></img>
+                                <br/>
+                                <a data-i18n="text: panel_price_labor"></a>
+                                <br />
+                                <a class="split-price">RM</a>
+                                <a id="price-labor" class="split-price">0</a>
+                            </div>
+                            <div class="column phone-4 tablet-4">
+                                <img src="res/img/tp_icon_1_fuel_128x64.png"></img>
+                                <br/>
+                                <a data-i18n="text: panel_price_fuel"></a>
+                                <br />
+                                <a class="split-price">RM</a>
+                                <a id="price-fuel" class="split-price">0</a>
+                            </div>
+                            <div class="column phone-4 tablet-4">
+                                <img src="res/img/tp_icon_2_maintenance_128x64.png"></img>
+                                <br/>
+                                <a data-i18n="text: panel_price_maintenance"></a>
+                                <br />
+                                <a class="split-price">RM</a>
+                                <a id="price-maintenace" class="split-price">0</a>
+                            </div>
+						</div>
+					</div> 
+				</div><!-- split pricing end -->
+
+                <div class="row">
+                    <div class="padded-full">
+                        <li class="column price-transparent-desc" data-i18n="text: panel_price_fac1"></li>
+                        <li class="column price-transparent-desc" data-i18n="text: panel_price_fac2"></li>
+                        <li class="column price-transparent-desc" data-i18n="text: panel_price_fac3"></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		<!-- assembly selection panel -->
+        <div id="panel-service-assembly" class="panel-full">
+			<header class="header-bar">
+                <div class="center">
+                    <h1 class="title" data-i18n="text: panel_service_assembly_title"></h1>
+                </div>
+            </header>
+			<div class="content padded-full">
+				<div class="row">
+					<div class="phone-8 tablet-6 column assemble-div" style="padding-top:0.5em;">
+						<a data-i18n="text: panel_service_bed"></a>
+						<br />
+						<a data-i18n="text: panel_service_bed_desc"></a>
+					</div>
+					<div class="phone-4 tablet-3 column" style="text-align:center; float:left; padding-left:10px; padding-right:10px;">
+						<select id="select_bed_count">
+							<option value="0" data-i18n="text: popover_service_assembly_0" selected></option>
+							<option value="1" data-i18n="text: popover_service_assembly_1"></option>
+							<option value="2" data-i18n="text: popover_service_assembly_2"></option>
+							<option value="3" data-i18n="text: popover_service_assembly_3"></option>
+							<option value="4" data-i18n="text: popover_service_assembly_4"></option>
+							<option value="5" data-i18n="text: popover_service_assembly_5"></option>
+						</select>
+					</div>
+				</div>	
+
+				<div class="row">
+					<div class="phone-8 tablet-6 column assemble-div" style="padding-top:0.5em;">
+						<a data-i18n="text: panel_service_wardrobe"></a>
+						<br />
+						<a data-i18n="text: panel_service_wardrobe_desc"></a>
+					</div>
+					<div class="phone-4 tablet-3 column" style="text-align:center; float:left; padding-left:10px; padding-right:10px;">
+						<select id="select_wardrobe_count">
+							<option value="0" data-i18n="text: popover_service_assembly_0" selected></option>
+							<option value="1" data-i18n="text: popover_service_assembly_1"></option>
+							<option value="2" data-i18n="text: popover_service_assembly_2"></option>
+							<option value="3" data-i18n="text: popover_service_assembly_3"></option>
+							<option value="4" data-i18n="text: popover_service_assembly_4"></option>
+							<option value="5" data-i18n="text: popover_service_assembly_5"></option>
+						</select>
+					</div>
+				</div>	
+
+				<div class="row">
+					<div class="phone-8 tablet-6 column assemble-div" style="padding-top:0.5em;">
+						<a data-i18n="text: panel_service_dining_table"></a>
+						<br />
+						<a data-i18n="text: panel_service_dining_table_desc"></a>
+					</div>
+					<div class="phone-4 tablet-3 column" style="text-align:center; float:left; padding-left:10px; padding-right:10px;">
+						<select id="select_dinning_count">
+							<option value="0" data-i18n="text: popover_service_assembly_0" selected></option>
+							<option value="1" data-i18n="text: popover_service_assembly_1"></option>
+							<option value="2" data-i18n="text: popover_service_assembly_2"></option>
+							<option value="3" data-i18n="text: popover_service_assembly_3"></option>
+							<option value="4" data-i18n="text: popover_service_assembly_4"></option>
+							<option value="5" data-i18n="text: popover_service_assembly_5"></option>
+						</select>
+					</div>
+				</div>	
+
+				<div class="row">
+					<div class="phone-8 tablet-6 column assemble-div" style="padding-top:0.5em;">
+						<a data-i18n="text: panel_service_office_table"></a>
+						<br />
+						<a data-i18n="text: panel_service_office_table_desc"></a>
+					</div>
+					<div class="phone-4 tablet-3 column" style="text-align:center; float:left; padding-left:10px; padding-right:10px;">
+						<select id="select_table_count">
+							<option value="0" data-i18n="text: popover_service_assembly_0" selected></option>
+							<option value="1" data-i18n="text: popover_service_assembly_1"></option>
+							<option value="2" data-i18n="text: popover_service_assembly_2"></option>
+							<option value="3" data-i18n="text: popover_service_assembly_3"></option>
+							<option value="4" data-i18n="text: popover_service_assembly_4"></option>
+							<option value="5" data-i18n="text: popover_service_assembly_5"></option>
+						</select>
+					</div>
+				</div>	
+				
+				<div style="position:absolute; bottom:0px; width:100%; padding:10%">
+					<button class="btn primary fit-parent" data-panel-close="true" data-i18n="text: btn_service_confirm"></button>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- building type panel from -->
+		<div id="panel_building_type_from" class="panel">
+			<header class="header-bar">
+                <div class="center">
+                    <h1 class="title" data-i18n="text: building_type_title"></h1>
+                </div>
+				<a class="btn icon icon-close pull-right" href="#" data-panel-close="true"></a>
+            </header>
+			
+			<div class="content">
+				<div class="padded-full">
+					<ul class="list">
+						<li class="padded-for-list">
+							<label class="radio">
+								<input type="radio" name="building-type-from" value="1" checked >
+								<span></span>
+                                <img class="pull-left icon" src='res/img/bt_icon_1_lift_active_96x96.png')></img>
+								<a data-i18n="text: building_type_1"></a>
+							</label>
+						</li>
+						<li class="padded-for-list">
+							<label class="radio">
+								<input type="radio" name="building-type-from" value="2">
+								<span></span>
+                                <img class="pull-left icon" src='res/img/bt_icon_2_nolift_active_96x96.png')></img>
+								<a data-i18n="text: building_type_2"></a>
+							</label>
+						</li>
+						<li class="padded-for-list">
+							<label class="radio">
+								<input type="radio" name="building-type-from" value="3">
+								<span></span>
+                                <img class="pull-left icon" src='res/img/bt_icon_3_landed_active_96x96.png')></img>
+								<a data-i18n="text: building_type_3"></a>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- building type panel to -->
+		<div id="panel_building_type_to" class="panel">
+			<header class="header-bar">
+                <div class="center">
+                    <h1 class="title" data-i18n="text: building_type_title"></h1>
+                </div>
+				<a class="btn icon icon-close pull-right" href="#" data-panel-close="true"></a>
+            </header>
+			
+			<div class="content">
+				<div class="padded-full">
+					<ul class="list building-type-list">
+						<li class="padded-for-list">
+							<label class="radio">
+								<input type="radio" name="building-type-to" value="1" checked >
+								<span></span>
+                                <img class="pull-left icon" src='res/img/bt_icon_1_lift_active_96x96.png')></img>
+								<a data-i18n="text: building_type_1"></a>
+							</label>
+						</li>
+						<li class="padded-for-list">
+							<label class="radio">
+								<input type="radio" name="building-type-to" value="2">
+								<span></span>
+                                <img class="pull-left icon" src='res/img/bt_icon_2_nolift_active_96x96.png')></img>
+								<a data-i18n="text: building_type_2"></a>
+							</label>
+						</li>
+						<li class="padded-for-list">
+							<label class="radio">
+								<input type="radio" name="building-type-to" value="3">
+								<span></span>
+                                <img class="pull-left icon" src='res/img/bt_icon_3_landed_active_96x96.png')></img>
+								<a data-i18n="text: building_type_3"></a>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+        <!-- pages content -->
+        <home data-page="true"></home>
+        <stepone data-page="true"></stepone>
+        <steptwo data-page="true"></steptwo>
+        <confirm data-page="true"></confirm>
+        <payment data-page="true"></payment>
+        
+		<script src="res/moment-with-locales.min.js"></script>
+        <script src="dist/js/phonon.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
+        

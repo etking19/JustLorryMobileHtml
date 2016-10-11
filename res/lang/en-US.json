@@ -1,0 +1,168 @@
+{
+    "leftpanel_title":"JustLorry",
+    "leftpanel_about":"About Us",
+    "leftpanel_version":"version: ",
+    
+    "about_panel_title" : "About Us",
+    "about_panel_desc_1" : "JustLorry is a registered transportation company that uses people and software to manage the complexity of delivery.",
+    "about_panel_desc_2" : "Delivering something from Klang Valley or Penang to Johore requires complex coordination. Currently that’s done by telephones, spreadsheets, and fax machines. JustLorry provides a web-based app that offers real-time visibility of your deliveries. And we’re not just a software platform: Our experienced logistics and human management experts are here to help at every step of the way.",
+    "about_panel_desc_3" : "JustLorry is a transportation company for the Internet age.",
+    "about_panel_contact" : "Contact Us",
+
+    "button_ok" : "OK",
+    "button_cancel" : "Cancel",
+    
+    "bottom_next":"Next",
+    "bottom_back":"Back",
+    "bottom_reset":"Reset",
+    "bottom_confirm":"Confirm",
+    "bottom_promo":"Promo Code",
+    "bottom_details":"Price Details",
+    
+    "home_new" : "New Order",
+    "home_payment" : "Make Payment",
+
+    "home_payment_orderId_title" : "Booking ID",
+    "home_payment_orderId_placeholder" : "Enter your booking id here.",
+
+    "error_home_payment" : "Record not found. Please make sure you enter correct booking id.",
+
+    "service_standard":"Standard",
+    "service_disposal":"Disposal",
+    
+    "lorry_type1":"1 Tonne",
+    "lorry_type2":"3 Tonne",
+    "lorry_type3":"5 Tonne",
+    
+    "lorry_dim_type1":"270cm x 150cm x 180cm (L x W x H)",
+    "lorry_dim_type2":"420cm x 210cm x 180cm (L x W x H)",
+    "lorry_dim_type3":"510cm x 210cm x 180cm (L x W x H)",
+    
+    "lorry_desc_type1":"Maximum Gross Weight: 1000 KGS",
+    "lorry_desc_type2":"Maximum Gross Weight: 2500 KGS",
+    "lorry_desc_type3":"Maximum Gross Weight: 2500 KGS",
+    
+    "lorry_details" : "Click for more info",
+    "lorry_panel_title": "Truck Size Info",
+    "lorry_panel_fridge": "Fridge",
+    "lorry_panel_washing_machine": "Washing Machine",
+    "lorry_panel_wardrobe": "1 Wardrobe",
+    "lorry_panel_matress": "1 Matress",
+    "lorry_panel_sofa":"Sofa",
+    
+    "lorry_panel_wardrobes": "2 Wardrobes",
+    "lorry_panel_dining_table": "Dining Table and 4 Chairs",
+    "lorry_panel_sofas": "2 Sofas",
+    
+    "lorry_panel_matresses": "2 Matresses",
+    "lorry_panel_lshape_sofa": "L-Shape Sofa",
+    
+    "location_from" : "From Postcode",
+    "location_to" : "To Postcode",
+
+    "promo_code_placeholder" : "Enter promo code here:",
+    "promo_code_wait" : "Validating...",
+    
+    "error_invalid_postcode" : "Invalid postcode.",
+    "error_general" : "Internal error. Please try again later.",
+
+    
+    
+    "delivery_datetime":"Delivery Date & Time:",
+    "contact_name":"Your Name (Denell Wong)",
+    "contact_phone":"Contact Number (0123456789)",
+    "contact_email":"Email Address (denell@justlorry.com)",
+    
+    "from_address_header" : "from",
+    "from_address_unit" : "Unit",
+	"from_address_street" : "Street",
+	
+    "to_address_header" : "to",
+    "to_address_unit" : "Unit",
+    "to_address_street" : "Street",
+	
+	"building_type_title" : "Building Type",
+	"building_type_1" : "High rise with lift",
+	"building_type_2" : "High rise no lift",
+	"building_type_3" : "Landed",
+	
+    "promo_code_valid" : "Promo code valid.",
+    "2303" : "Invalid promo code.",
+    "2304" : "Promo code expired.",
+    "2305" : "Required minumum purchase to use this promo code.",
+    "2306" : "Oops, all voucher has been redeemed. Try again next time.",
+
+    "error_general" : "We facing some techincal difficulty to perform this action, please try again later.",
+
+	"panel_price_title" : "Transparent Pricing",
+    "panel_price_fuel" : "Fuel & Toll",
+    "panel_price_maintenance" : "Maintenance",
+    "panel_price_labor" : "Labor",
+    "panel_price_partner" : "Partner",
+    "panel_price_justlorry" : "JustLorry",
+    
+	"panel_price_fac1" : "Price shown is inclusive of vehicle and driver only.",
+	"panel_price_fac2" : "Manpower to assist with load & unload can be booked under \"Additional Service\".",
+	"panel_price_fac3" : "Driver of vehicle will not assist in loading and unloading of goods.",
+    
+    "additional_service":"Additional Service",
+	"service_labor":"Man Power",
+    "service_assembly_dissasembly": "Assembly & Disassembly",
+	
+	"panel_service_labor_title" : "Labor",
+    "panel_service_labor_man":" persons (MYR ##/Person)",
+	"panel_service_labor_0" : "0 man power",
+	"panel_service_labor_0_desc" : "Driver of vehicle will not assist in loading and unloading of goods. You have family members or friends to help you carry the items. Please make sure they are at the destination to help unload as well!",
+	"panel_service_labor_1" : "1 man power",
+	"panel_service_labor_1_desc" : "You wish someone help to move light items such as boxes, bags, chairs, etc.",
+	"panel_service_labor_2" : "2 man power",
+	"panel_service_labor_2_desc" : "You have items such as fridge, washing machine, dining table, sofa, etc.",
+	"panel_service_labor_3" : "3 man power and above",
+	"panel_service_labor_3_desc" : "You wish to move all items in your house without dirty your hand.",
+	
+	"popover_service_labor_0" : "0 man power",
+	"popover_service_labor_1" : "1 man power",
+	"popover_service_labor_2" : "2 man power",
+	"popover_service_labor_3" : "3 man power",
+	"popover_service_labor_4" : "4 man power",
+	"popover_service_labor_5" : "5 man power",
+	
+	"panel_service_assembly_title" : "Assembly / Dissasembly",
+    "panel_service_bed":"Bed - Any Size",
+	"panel_service_bed_desc" : "(MYR 30 / Item)",
+    "panel_service_wardrobe": "Wardrobe, Bookshelf",
+	"panel_service_wardrobe_desc" : "(MYR 120 / Item)",
+    "panel_service_dining_table": "Dining Table",
+	"panel_service_dining_table_desc" : "(MYR 20 / Item)",
+    "panel_service_office_table" : "Office Table",
+	"panel_service_office_table_desc" : "(MYR 50 / Item)",
+	"btn_service_confirm" : "Confirm",
+
+	"popover_service_assembly_0" : "0 item",
+	"popover_service_assembly_1" : "1 item",
+	"popover_service_assembly_2" : "2 items",
+	"popover_service_assembly_3" : "3 items",
+	"popover_service_assembly_4" : "4 items",
+	"popover_service_assembly_5" : "5 items",
+	
+    "service_bubble_cost" : "MRY 200/Roll",
+    "service_shrink_cost" : "MRY 50/Roll",
+
+
+    "payment_statement" : "Thank you for choosing JustLorry.com",
+    "payment_desc" : "Your booking id is: ",
+    "payment_desc_2" : "Total amount: ",
+    "payment_desc_3" : "Please pay total amount to let us arrange your booking. You will receive a confirmation once payment successfully made.",
+    "payment_button" : "Pay Now",
+
+
+
+	"home_title":"JustLorry",
+    "stepone_title":"New Order",
+    "steptwo_title":"Information",
+    "confirmation_title": "Confirmation",
+    "payment_title" : "Payment",
+
+    "footer_company" : "Just Supply Chain Berhad (1193116-H)"
+    
+}

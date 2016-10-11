@@ -1,0 +1,99 @@
+<confirm class="app-page">
+    <header class="header-bar">
+
+        <button class="btn pull-left icon icon-arrow-back" data-navigation="$previous-page"></button>
+        <div class="center">
+            <h1 class="title" data-i18n="text: confirmation_title"></h1>
+        </div>
+        <button class="btn pull-right" data-popover-id="language-popover">
+            <img src="res/img/navibar_icon_language_96x96.png" style="max-height: 80%; margin-top: 10%"/>
+        </button>
+        <script>
+          ga('send', 'pageview', 'mobile/confirm');
+        </script>
+    </header>
+    <div class="content padded-full pad-content">
+        <div class="row padded-top">
+            <img id="confirmation_deliver_icon"class="phone-4 tablet-3 column" >
+            <div class="phone-7 tablet-8 column confirm-datetime">
+                <a id="confirm_delivery_date">17 Aug 2016</a>
+				<a>-</a>
+				<a id="confirm_delivery_time">9:00AM</a>
+                <br />
+                <a id="confirm_contact_name">Denell Wong</a>
+                <br />
+                <a>(</a>
+                <a id="confirm_contact_phone">0123456789</a>
+                <a>)</a>
+            </div>
+        </div>
+    
+        <div class="row padded-top" style="padding-left: 10px; padding-right:10px;">
+
+            <a class="phone-6 tablet-6 column full-address-header" data-i18n="text: from_address_header"></a>
+            <a class="phone-6 tablet-6 column full-address-header" data-i18n="text: to_address_header"></a>
+
+            <div class="phone-6 tablet-6 column full-address" style="text-align:left">
+                <a id="road_details_unit_from">123</a>
+				<a>, </a>
+				<a id="road_details_street_from">Jalan Syed Hamid</a>
+                <br />
+                <a id="road_location_from">43300, Petaling Jaya, Selangor</a>
+            </div>
+
+            <div id="div_deliver_to" class="phone-6 tablet-6 column full-address" style="text-align:left">
+                <a id="road_details_unit_to">123</a>
+				<a>, </a>
+				<a id="road_details_street_to">Jalan Syed Hamid</a>
+                <br />
+                <a id="road_location_to">43300, Petaling Jaya, Selangor</a>
+            </div>
+
+            <img id="div_image_disposed" class="phone-6 tablet-6 column" src="res/img/disposal_destination_128x128.png">
+
+        </div>
+        
+        <div id="additional_service_div" class="row padded-top">
+            <ul class="list">
+                <li class="service-header" data-i18n="text: additional_service"></li>
+				<li class="padded-list additional-service-desc">
+                    <label class="checkbox">
+						<input id="confirm_checkbox_labor" data-order="labor" type="checkbox" class="">
+						<span></span>
+						<a data-i18n="text: service_labor"></a>
+						<a id="service_labor_text" style="line-height:0em"></a>
+					</label>
+                </li>
+				<li data-panel-id="panel-service-assembly">
+					<button class="padded-list btn-flat additional-service-desc" data-i18n="text: service_assembly_dissasembly"></button>
+					<a class="padded-list pull-right" >
+                        <img src="res/img/as_icon_96x96.png" style="max-width: 100%"></i>
+                    </a>
+				</li>
+            </ul>
+        </div>
+        
+    </div>
+    
+    
+    <!-- bottom panel absolute -->
+    <div class="fit-parent no-padding" style="position:absolute; bottom:0px">
+        <div class="row">
+            <button id="confirm_promo_code" class="btn btn-flat phone-4 tablet-4 column promo-code" data-i18n="text: bottom_promo" style="font-size:0.8em"></button>
+
+            <div class="phone-4 tablet-4 column text-center">
+                <a class="price-final">MYR</a>
+                <a class="price-final" id="confirm_final_price">9999</a>
+            </div>
+
+            <button class="btn btn-flat phone-4 tablet-4 column price-details" data-i18n="text: bottom_details" data-panel-id="panel-price-details"></button>
+        </div>
+
+        <!-- bottom navigation buttons -->
+        <div class="row">
+            <button id="confirm_confirm" class="btn primary phone-12 tablet-12" style="border-radius:0px; float:right" data-i18n="text: bottom_confirm" data-order="confirm"></button>
+        </div>
+
+    </div>
+    
+</confirm>

@@ -1,0 +1,341 @@
+
+.no-padding {
+    margin: 0px;
+    padding:0px
+};
+
+.description-text {
+  font-size: 0.8em  
+}
+
+.custom-line-height {
+    line-height: 1.5em;
+}
+
+.pad-content {
+	margin-bottom: 100px !important;
+}
+
+.footer {
+	background-color: #a4cd39;
+	min-height: 30px;
+}
+
+.footer a {
+	color: white !important;
+}
+/*
+left panel
+*/
+.left-panel-header {
+	background-color: #4f9c44 !important;
+	height: 80px;
+	margin-bottom: 28px;
+}
+
+.left-panel-logo {
+	height: 80px;
+}
+
+.left-panel-content {
+	margin-top: 80px !important;
+}
+
+.left-panel-desc {
+	color: #4f9c44;
+}
+
+.side-panel .list li {
+	border-color: white;
+}
+
+.about-desc {
+	color: #727272;
+}
+
+/*
+Home
+*/
+#home-newOrder {
+	background: url(../../res/img/type_standard_grey_128x64.png) no-repeat; 
+}
+
+#home-payment {
+	background: url(../../res/img/type_disposal_grey_128x64.png) no-repeat; 
+}
+
+/*
+Step one page
+*/
+.delivery-selection {
+	border: 2px solid #afafaf; 
+	border-radius: 10px;
+	width: 100%;
+	min-height: 90px;
+	max-width: 140px;
+}
+
+.delivery-selection.selected {
+	border: 2px solid #4f9c44; 
+	border-radius: 10px;
+	width: 100%;
+	min-height: 90px;
+
+}
+
+.delivery-selection:active {
+	border: 2px solid #4f9c44; 
+	border-radius: 10px;
+}
+
+
+.delivery-selection-text {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	text-transform: uppercase;
+	color: #afafaf
+}
+
+.delivery-selection-text:active {
+	color: #afafaf
+}
+
+.delivery-selection-text.selected {
+	color: #4f9c44
+}
+
+#stepone-standard {
+	background: url(../../res/img/type_standard_grey_128x64.png) no-repeat;
+}
+
+#stepone-standard.selected {
+	background: url(../../res/img/type_standard_active_128x64.png) no-repeat;
+}
+
+#stepone-disposal {
+	background: url(../../res/img/type_disposal_grey_128x64.png) no-repeat;
+}
+
+#stepone-disposal.selected {
+	background: url(../../res/img/type_disposal_active_128x64.png) no-repeat;
+}
+
+.delivery-size-div {
+	text-align: center;
+	background: white;
+}
+
+.delivery-size-text {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	text-transform: uppercase;
+	background: white;
+	color: #afafaf;
+	border: 2px solid #afafaf; 
+	border-radius: 20px;
+	min-height: 30px;
+}
+
+.delivery-size-text:active {
+	color: #4f9c44;
+	border: 2px solid #4f9c44; 
+	border-radius: 20px;
+}
+
+.delivery-size-text.selected {
+	color: #4f9c44;
+	border: 2px solid #4f9c44; 
+	border-radius: 20px;
+}
+
+.description-text {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color : #afafaf;
+}
+
+.more-info {
+	margin-top: 15px;
+	color: #afafaf;
+	border: 2px solid #afafaf; 
+	border-radius: 20px;
+	background: white;
+	min-height: 30px;
+	text-transform: inherit;
+}
+
+.more-info:active {
+	color: #4f9c44;
+	border: 2px solid #4f9c44; 
+	border-radius: 20px;
+}
+
+.price-details,
+.promo-code {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	color : #727272;
+	font-size: 0.8em;
+}
+
+.price-final {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	color : #4f9c44;
+	font-size: 1.4em;
+}
+
+/*
+Truck size info page
+*/
+.truck-size-header {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium !important;
+	text-align: center !important;
+	color: #4f9c44 !important;
+	font-size: 1.2em !important;
+}
+
+.truck-size-desc {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular !important;
+	color : #727272 !important;
+	text-align: center !important;
+}
+
+.truck-size-desc-item {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular !important;
+	color : #727272 !important;
+}
+
+.icon-expand-more,
+.icon-expand-less {
+	color: #4f9c44;
+}
+
+.list li .accordion-content {
+	background-color: white !important;
+}
+
+/*
+Price details screen
+*/
+.price-transparent-header {
+	background-color: white;
+	text-align: center;
+}
+
+.price-transparent-header a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	color : #4f9c44;
+	text-transform: uppercase;
+	font-size: 1.0em;
+}
+
+.price-transparent-div,
+.price-transparent-div div {
+	text-align: center;
+}
+
+.price-transparent-div div img {
+	max-width: 100%;
+}
+
+.price-transparent-div div a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #afafaf;
+}
+
+.split-price {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #727272 !important;
+}
+
+.price-transparent-desc {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #727272;
+	padding: 10px;
+}
+
+/*
+Page two
+*/
+.delivery-datetime {
+	padding-left: 10px;
+}
+
+.delivery-datetime a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	color: #4f9c44;
+}
+
+.information-address {
+	text-align: left;
+}
+
+.information-address a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #afafaf;
+}
+
+.list li a,
+.list li span {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular !important;
+	color: #727272;
+}
+
+.checkbox :checked + span,
+.radio :checked + span {
+	border-color: : #4f9c44 !important;
+}
+
+.radio img {
+	margin-right: 10px;
+}
+
+/*
+Confirmation page
+*/
+.confirm-datetime a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	color: #4f9c44;
+}
+
+.full-address-header {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	color: #4f9c44;
+	float: left;
+	text-transform: uppercase;
+}
+
+.full-address a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #afafaf;
+}
+
+.service-header {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", medium;
+	background: white;
+	text-transform: uppercase;
+	color: #4f9c44;
+	padding-left: 12px;
+}
+
+.additional-service-desc,
+.additional-service-desc a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #727272;
+}
+
+.assemble-div a {
+	font-family: "Helvetica Neue", "Roboto", "Segoe UI", regular;
+	color: #727272;
+}
+
+/*
+Payment page
+*/
+.payment-header {
+	color: #727272;
+}
+
+.payment-desc {
+	color: #afafaf;
+}
+
+.payment-info{
+	color: #4f9c44;
+}

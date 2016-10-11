@@ -1,0 +1,94 @@
+<steptwo class="app-page">
+    <header class="header-bar">
+
+        <button class="btn pull-left icon icon-arrow-back" data-navigation="$previous-page"></button>
+        <div class="center">
+            <h1 class="title" data-i18n="text: steptwo_title"></h1>
+        </div>
+        <button class="btn pull-right" data-popover-id="language-popover">
+            <img src="res/img/navibar_icon_language_96x96.png" style="max-height: 80%; margin-top: 10%"/>
+        </button>
+        <script>
+          ga('send', 'pageview', 'mobile/steptwo');
+        </script>
+    </header>
+
+    <div class="content pad-content">   
+        <div class="padded-full">
+            <div class="row padded-top">
+                <img id="deliver_icon" class="phone-4 tablet-3 column">
+                <div class="phone-8 tablet-9 column delivery-datetime">
+                    <a data-i18n="text: delivery_datetime"></a>
+                    <input id="delivery_datetime" type="datetime-local" required>
+                </div>
+            </div>
+
+            <!-- contact info -->
+            <div class="row padded-top">
+                <input id="contact_name" type="text" data-i18n="placeholder: contact_name" required>
+                <input id="contact_number" type="number" data-i18n="placeholder: contact_phone" required>
+                <input id="contact_email" type="email" data-i18n="placeholder: contact_email" required>
+            </div>
+
+            <!-- address -->
+			<div class="row padded-top">
+<!--                     <div class="phone-12 column">
+                    <a data-i18n="text: from_address_header"></a>
+                </div> -->
+				<div class="phone-2 tablet-2 column">
+					<input id="address_from_unit" class="fit-parent" type="text" style="text-align: left" data-i18n="placeholder: from_address_unit" required>
+				</div>
+				<div class="phone-8 tablet-8 column" style="padding-left: 10px">
+					<input id="address_from_street" class="fit-parent" type="text" style="text-align: left" data-i18n="placeholder: from_address_street" required>
+				</div>
+                <div class="phone-2 tablet-2 column" style="text-align:center">
+                    <img id="panel-building-type-from" data-panel-id="panel_building_type_from" style="max-height:48px" src="res/img/bt_icon_1_lift_active_96x96.png">
+                    </img>
+                </div>
+				<div class="phone-12 tablet-12 column information-address">
+					<a id="step2_location_from">Selangor</a>
+				</div>
+			</div>
+			
+			<div id="div_to" class="row">
+<!--                     <div class="phone-12 column">
+                    <a data-i18n="text: to_address_header"></a>
+                </div> -->
+				<div class="phone-2 tablet-2 column">
+					<input id="address_to_unit" class="fit-parent" type="text" style="text-align: left" data-i18n="placeholder: to_address_unit" required>
+				</div>
+				<div class="phone-8 tablet-8 column" style="padding-left: 10px">
+					<input id="address_to_street" class="fit-parent" type="text" style="text-align: left" data-i18n="placeholder: to_address_street" required>
+				</div>
+                <div class="phone-2 tablet-2 column" style="text-align:center">
+                    <img id="panel-building-type-to" data-panel-id="panel_building_type_to" style="max-height:48px" src="res/img/bt_icon_1_lift_active_96x96.png">
+                    </img>
+                </div>
+				<div class="phone-12 tablet-12 column information-address" >
+					<a id="step2_location_to">Selangor</a>
+				</div>
+
+			</div>
+        </div>
+    </div>
+
+    <!-- bottom panel absolute -->
+    <div class="fit-parent no-padding" style="position:absolute; bottom:0px">
+        
+        <div class="row">
+            <button id="promo-code" class="btn btn-flat phone-4 tablet-4 column promo-code" data-i18n="text: bottom_promo" type="button"></button>
+
+            <div class="phone-4 tablet-4 column text-center">
+                <a class="price-final">MYR</a>
+                <a id="steptwo-final-price" class="price-final">9999</a>
+            </div>
+
+            <button class="btn btn-flat phone-4 tablet-4 column price-details" data-i18n="text: bottom_details" data-panel-id="panel-price-details" type="button"></button>
+        </div>
+        
+        <!-- bottom navigation buttons -->
+        <div class="row">
+            <button id="nextsteptwo" class="btn primary phone-12 tablet-12" style="border-radius:0px; float:right" data-i18n="text: bottom_next" data-order="steptwo-next"></button>
+        </div>
+    </div>
+</steptwo>

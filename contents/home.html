@@ -1,0 +1,79 @@
+<home class="app-page">
+
+    <style>
+        .mySlides {display:none;}
+    </style>
+
+    <header class="header-bar">
+        <button class="btn icon icon-menu pull-left show-for-phone-only" data-side-panel-id="side-panel"></button>
+        <div class="center">
+            <h1 class="title" data-i18n="text: home_title"></h1>
+        </div>
+        <button class="btn pull-right" data-popover-id="language-popover">
+            <img src="res/img/navibar_icon_language_96x96.png" style="max-height: 80%; margin-top: 10%"/>
+        </button>
+        <script>
+		  ga('send', 'pageview', 'mobile/home');
+		</script>
+    </header>
+
+    <div class="content">
+        <div class="padded-full">
+
+            <div class="w3-content w3-section" style="max-width:500px">
+                <img class="mySlides" src="res/img/bt_icon_3_landed_active_96x96.png" style="width:100%">
+                <img class="mySlides" src="res/img/bt_icon_96x96.png" style="width:100%">
+                <img class="mySlides" src="res/img/bt_icon_2_nolift_active_96x96.png" style="width:100%">
+            </div>
+
+            <div class="row" style="text-align: center; margin-top: 20px">
+                <div class="phone-6 tablet-6 column">
+                    <div style="padding-right: 10px">
+                        <button id="home-newOrder" class="btn delivery-selection">
+                            <div style="margin-top:35%">
+                                <a class="delivery-selection-text" data-i18n="text: home_new"></a>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="phone-6 tablet-6 column">
+                    <div style="padding-left: 10px">
+                        <button id="home-payment" class="btn delivery-selection">
+                            <div style="margin-top:35%">
+                                <a class="delivery-selection-text" data-i18n="text: home_payment"></a>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fit-parent no-padding" style="position: absolute; bottom:0px; text-align: center">
+
+        <!-- bottom navigation buttons -->
+        <div class="row footer">
+            <a data-i18n="text: footer_company"></a>
+        </div>
+
+    </div>
+
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}
+            x[myIndex-1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+</home>
