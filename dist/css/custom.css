@@ -18,12 +18,37 @@
 
 .footer {
 	background-color: #a4cd39;
-	min-height: 30px;
+	min-height: 42px;
+	display: table;
 }
 
 .footer a {
 	color: white !important;
+	display: table-cell;
+	vertical-align: middle;
 }
+
+input {
+  background: rgb(250, 248, 209) !important;
+  padding-left: 5px;
+}
+
+.input-padding {
+	margin-top: 5px;
+}
+
+#booking_dialog,
+#promo_dialog {
+	top: 100px !important;
+}
+
+#select_bed_count,
+#select_wardrobe_count,
+#select_dinning_count,
+#select_table_count {
+	transform: scale(0.8);
+}
+
 /*
 left panel
 */
@@ -56,12 +81,12 @@ left panel
 /*
 Home
 */
-#home-newOrder {
-	background: url(../../res/img/type_standard_grey_128x64.png) no-repeat; 
+#home_new {
+	background: url(../../res/img/new_128x64.png) no-repeat; 
 }
 
-#home-payment {
-	background: url(../../res/img/type_disposal_grey_128x64.png) no-repeat; 
+#home_payment {
+	background: url(../../res/img/payment_128x64.png) no-repeat; 
 }
 
 /*

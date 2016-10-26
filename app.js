@@ -19,8 +19,8 @@ phonon.i18n().bind();
 
 var app = phonon.navigator();
 
-var apiBaseUrl = "http://52.40.249.160/just/api/";
-//var apiBaseUrl = "http://localhost:56883/api/";
+//var apiBaseUrl = "http://52.40.249.160/just/api/";
+var apiBaseUrl = "https://api.justlorry.com/api/";
 
 var oneSignalIdentifier = null;
 var distance = 0;
@@ -29,7 +29,7 @@ var orderCode = null;
 var totalAmount = null;
 
 var lorryType = 1;
-var fromBuildingType = 1, toBuildingType = 1;
+var fromBuildingType = 0, toBuildingType = 0;
 var laborCount = 0;
 var assemblyBedCount = 0;
 var assemblyDiningCount = 0;
@@ -45,6 +45,7 @@ var fromAddUnit = null, fromAddStreet = null, toAddUnit = null, toAddStreet = nu
 var contactName = null, contactNumber = null, contactEmail = null;
 var deliverDateTime = null;
 
+var promoDialog = null;
 
 // price details controls
 var price_fuel, price_maintenace, price_labor, price_partner, price_justlorry;
@@ -57,9 +58,9 @@ document.querySelector('.lang-en').on('tap', function(evt){
     phonon.updateLocale('en-US');
 });
 
-document.querySelector('.lang-ms').on('tap', function(evt){
-    phonon.updateLocale('ms');
-});
+// document.querySelector('.lang-ms').on('tap', function(evt){
+//     phonon.updateLocale('ms');
+// });
 
 $.ajaxSetup({
     headers: 
@@ -98,16 +99,7 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
             
         } else if(order === 'stepone-promocode') {
 
-			console.log('promo code');
-            phonon.i18n().get(['bottom_promo', 'button_ok', 'button_cancel', 'promo_code_placeholder'], function(values) {
-
-                var prompt = phonon.prompt(values['promo_code_placeholder'], values['bottom_promo'], true, values['button_ok'], values['button_cancel']);
-                prompt.on('confirm', function(inputValue)
-                    {
-                        promoCodeHandler(inputValue, currentPrice);
-                    });
-            });          
-
+            promoDialog.open();
             ga('send', 'event', 'mobile', 'click', 'promo_code');  
             
         }
@@ -126,39 +118,58 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
     var getPostcodeInfo = function(from, to)
     {
         // validate via api and get the distance
-        $.post(apiBaseUrl + 'delivery/postcode', 
-               JSON.stringify({
-                    'deliverFrom': from,
-                    'deliverTo': to
-                }),
-        function(data, status){
-            console.log(data);
-            
-            if(status == 'success') {
-                // keep the data
-                if(data.DeliveryPostcodeValidationResult.success){
-                    
-                    var payload = JSON.parse(data.DeliveryPostcodeValidationResult.payload);
-                    console.log(payload);
-                    
-                    fromLocation = payload.postCodeAddFrom;
-                    toLocation = payload.postCodeAddTo;
-                    distance = payload.distance / 1000;
-                    
-                    // generate price
-                    generatePrice(currentPrice);
-                    
-                } else {
+        var blocking = phonon.indicator("", false);
 
-                    entryFrom.value = '';
-                    entryTo.value = '';
-                    phonon.alert('', data.DeliveryPostcodeValidationResult.errorMessage, false, 'OK');
-                }
-                
-            } else {
-                displayPostcodeError();
-            }
-        });
+        if(to !== null){
+            $.post(apiBaseUrl + 'postcode?' + 'deliverFrom=' + from + "&deliverTo=" + to, 
+                null,
+                function(data, status){
+                    console.log(data);
+                    
+                    blocking.close();
+
+                    if(data.success) {
+                        // keep the data
+                        var payload = JSON.parse(data.payload);
+                        console.log(payload);
+                        
+                        fromLocation = payload.postCodeAddFrom;
+                        toLocation = payload.postCodeAddTo;
+                        distance = payload.distance / 1000;
+                        
+                        // generate price
+                        generatePrice(currentPrice);
+                    } else {
+                        displayPostcodeError();
+                    }
+                });
+        } else {
+
+            // for disposal
+            $.post(apiBaseUrl + 'postcode?' + 'deliverFrom=' + from, 
+                null,
+                function(data, status){
+                    console.log(data);
+                    
+                    blocking.close();
+
+                    if(data.success) {
+                        // keep the data
+                        var payload = JSON.parse(data.payload);
+                        console.log(payload);
+                        
+                        fromLocation = payload.postCodeAddFrom;
+                        toLocation = payload.postCodeAddTo;
+                        distance = payload.distance / 1000;
+                        
+                        // generate price
+                        generatePrice(currentPrice);
+                    } else {
+                        displayPostcodeError();
+                    }
+                });
+        }
+        
     }
 
     var onEntryChange = function(evt) {
@@ -213,7 +224,7 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
         
         $('#stepone-standard').on('click', function(){
 
-            if(lorryType == 1) {
+            if(lorryType === 1) {
                 // same type, ignore
                 return;
             }
@@ -229,6 +240,7 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
             $('#stepone-standard-text').addClass('selected');
 
             lorryType = 1;
+            console.log('change lorry type: ' + lorryType);
             entryTo.required = true;
             generatePrice(currentPrice);
 
@@ -237,7 +249,7 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
 
         $('#stepone-disposal').on('click', function(){
 
-            if(lorryType == 2) {
+            if(lorryType === 2) {
                 // same type, ignore
                 return;
             }
@@ -253,6 +265,7 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
             $('#stepone-disposal-text').addClass('selected');
 
             lorryType = 2;
+            console.log('change lorry type: ' + lorryType);
             entryTo.required = false;
 
             generatePrice(currentPrice);
@@ -339,6 +352,13 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
         
         console.log(currentPrice);
         currentPrice.text = '0';
+
+        promoDialog = phonon.dialog('#promo_dialog');
+        promoDialog.on('confirm', function(inputValue)
+        {
+            promoCodeHandler(inputValue);
+            generatePrice(currentPrice);
+        });
     });
 	
 	
@@ -387,23 +407,29 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
 		
         document.querySelector('#nextsteptwo').on('tap', onAction);
         promoCode.on('tap', onPromoCode);
+        promoDialog.on('confirm', function(inputValue)
+        {
+            promoCodeHandler(inputValue);
+            generatePrice(currentPrice);
+        });
 		
 		$('input:radio[name="building-type-from"]').change(onBuildingTypeFromChange);
 		$('input:radio[name="building-type-to"]').change(onBuildingTypeToChange);
 
+        promoDialog = phonon.dialog('#promo_dialog'); 
     });
     
     activity.onReady(function(){
         // setup the location base on the postcode insert
-		
-		console.log(fromLocation);
-		console.log(toLocation);
-		console.log(lorryType);
+        console.log(fromLocation);
+        console.log(toLocation);
+        console.log(lorryType);
         console.log(lorrySize);
 
         switch(lorryType){
             case 1:
             {
+                console.log('case 1');
                 switch(lorrySize){
                     case 1:
                         document.getElementById("deliver_icon").src = 'res/img/lorry_1tonne_256x190.png';
@@ -415,9 +441,11 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
                         document.getElementById("deliver_icon").src = 'res/img/lorry_5tonne_256x190.png';
                         break;
                 }
+                break;
             }
             case 2: 
             {
+                console.log('case 2');
                 switch(lorrySize){
                     case 1:
                         document.getElementById("deliver_icon").src = 'res/img/disposal_lorry_1tonne_256x190.png';
@@ -429,9 +457,11 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
                         document.getElementById("deliver_icon").src = 'res/img/disposal_lorry_5tonne_256x190.png';
                         break;
                 }
+                break;
             }
+            default:
+                console.log('default');
         }
-
 		
         txtFromLocation.text = fromLocation;
         
@@ -450,8 +480,8 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
 
 		// initialize the datetime picker 2 days after today
 		var minDate = moment().add(2, 'days');
-		minDate.set
-		dateTime.value = minDate.format("YYYY-MM-DDT08:00");
+
+		// dateTime.value = minDate.format("YYYY-MM-DDT08:00");
 		dateTime.min = minDate.format("YYYY-MM-DDT08:00");
     });
     
@@ -523,6 +553,26 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
                 return;
             }
             
+            // check for building selection
+            if(fromBuildingType === 0){
+
+                phonon.i18n().get(['error_building_type'], function(values) {
+                    phonon.notif(values['error_building_type'], 1000, false);
+                });
+
+                return;
+            }
+
+            if(lorryType === 1 &&
+                toBuildingType === 0){
+                
+                phonon.i18n().get(['error_building_type'], function(values) {
+                    phonon.notif(values['error_building_type'], 1000, false);
+                });
+                return;
+            }
+
+
 			// save the details
 			/*
 			var fromAddUnit, fromAddStreet, toAddUnit, toAddStreet;
@@ -549,15 +599,21 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
     };
     
     var onPromoCode = function(evt) {
+
+        promoDialog.open();
+
+        /*
         phonon.i18n().get(['bottom_promo', 'button_ok', 'button_cancel', 'promo_code_placeholder'], function(values) {
             console.log(values);
 
             var prompt = phonon.prompt(values['promo_code_placeholder'], values['bottom_promo'], true, values['button_ok'], values['button_cancel']);
+            prompt.
             prompt.on('confirm', function(inputValue)
                 {
                     promoCodeHandler(inputValue, currentPrice);
                 });
         });  
+        */
 
         ga('send', 'event', 'mobile', 'click', 'promo_code');
     };   
@@ -638,6 +694,14 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
         } else {
             laborCount = 0;
         }
+
+        promoDialog = phonon.dialog('#promo_dialog'); 
+        promoDialog.on('confirm', function(inputValue)
+        {
+            promoCodeHandler(inputValue);
+            generatePrice(currentPrice);
+        });
+
     });
     
     activity.onReady(function() {
@@ -648,6 +712,7 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
         switch(lorryType){
             case 1:
             {
+                console.log('case 1');
                 switch(lorrySize){
                     case 1:
                         document.getElementById("confirmation_deliver_icon").src = 'res/img/lorry_1tonne_256x190.png';
@@ -659,21 +724,26 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
                         document.getElementById("confirmation_deliver_icon").src = 'res/img/lorry_5tonne_256x190.png';
                         break;
                 }
+                break;
             }
             case 2: 
             {
+                console.log('case 2');
                 switch(lorrySize){
                     case 1:
-                        document.getElementById("confirmation_deliver_icon").src = 'res/img/lorry_1tonne_256x190.png';
+                        document.getElementById("confirmation_deliver_icon").src = 'res/img/disposal_lorry_1tonne_256x190.png';
                         break;
                     case 3:
-                        document.getElementById("confirmation_deliver_icon").src = 'res/img/lorry_3tonne_256x190.png';
+                        document.getElementById("confirmation_deliver_icon").src = 'res/img/disposal_lorry_3tonne_256x190.png';
                         break;
                     case 5:
-                        document.getElementById("confirmation_deliver_icon").src = 'res/img/lorry_5tonne_256x190.png';
+                        document.getElementById("confirmation_deliver_icon").src = 'res/img/disposal_lorry_5tonne_256x190.png';
                         break;
                 }
+                break;
             }
+            default:
+                console.log('default');
         }
 
         if(lorryType === 2) {
@@ -824,6 +894,8 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
     */
 	var onConfirm = function(evt) {
 
+        var blocking = phonon.indicator("", false);
+
         console.log(currentPrice.text);
         totalAmount = currentPrice.text;
 
@@ -845,7 +917,7 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
             addressTo = [];
         }
 
-        $.post(apiBaseUrl + 'user/profile', JSON.stringify(
+        $.post(apiBaseUrl + 'user', JSON.stringify(
             {
                 'username': contactNumber,
                 'displayName' : contactName,
@@ -858,15 +930,45 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
 
             console.log(oneSignalIdentifier);
             if(oneSignalIdentifier != null){
-                $.post(apiBaseUrl + 'user/device', JSON.stringify(
-                {
-                    "userId" : userId,
-                    "identifier" : oneSignalIdentifier
-                }))
+
+                $.ajax({
+                    url: apiBaseUrl + 'device?userId=' + userId + '&identifier=' +  oneSignalIdentifier,
+                    method: "PUT"
+                }).done(function(result){
+                    console.log(result);
+                });
             }
         })
         .done(function(){
             
+
+            var remarks = '';
+            if(fromBuildingType == 2) {
+                remarks += ('From building without lift. ');
+            }
+
+
+            if(toBuildingType == 2) {
+                remarks += ('To building without lift. ');
+            }
+
+            if(assemblyBedCount != 0){
+                remarks += ('Assembly Bed: ' + assemblyBedCount + ' ');
+            }
+
+            if(assemblyDiningCount != 0){
+                remarks += ('Assembly Dining: ' + assemblyDiningCount + ' ');
+            }
+
+            if(assemblyWardrobeCount != 0){
+                remarks += ('Assembly Wardrobe: ' + assemblyWardrobeCount + ' ');
+            }
+
+            if(assemblyTableCount != 0){
+                remarks += ('Assembly Table: ' + assemblyTableCount + ' ');
+            }
+
+            blocking.close();
             $.post(apiBaseUrl + 'job', JSON.stringify(
             {
                 "ownerUserId" : userId,
@@ -875,7 +977,7 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
                 "amount" : currentPrice.text,      // TODO: to be discuss for server side double confirm
                 "workerAssistant" : laborCount,
                 "deliveryDate" : deliverDateTime,
-                "remarks" : '',
+                "remarks" : 'assemblyBedCount:0',
                 "addressFrom" : [{
                     "address1" : fromAddUnit,
                     "address2" : fromAddStreet,
@@ -903,29 +1005,21 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
                 }
             });
         })
-        
-		
 	};
     
     var onPromoCode = function(evt) {
-        phonon.i18n().get(['bottom_promo', 'button_ok', 'button_cancel', 'promo_code_placeholder'], function(values) {
-            console.log(values);
 
-            var prompt = phonon.prompt(values['promo_code_placeholder'], values['bottom_promo'], true, values['button_ok'], values['button_cancel']);
-            prompt.on('confirm', function(inputValue)
-                {
-                    promoCodeHandler(inputValue, currentPrice);
-                });
-        });  
-
+        promoDialog.open();
         ga('send', 'event', 'mobile', 'click', 'promo_code');
     };
 }); // 'confirm' page end 
 
 app.on({page: 'home', content: 'home.html'}, function(activity){
     
-    var newOrderBtn;
-    var makePaymentBtn;
+    var newOrderBtn = null;
+    var makePaymentBtn = null;
+
+    var bookingDialog = null;
 
     activity.onCreate(function(){
 
@@ -938,21 +1032,52 @@ app.on({page: 'home', content: 'home.html'}, function(activity){
             oneSignalIdentifier = queryStr.identifier;
         }
 
-        newOrderBtn = document.querySelector('#home-newOrder');
-        makePaymentBtn = document.querySelector('#home-payment');
+        newOrderBtn = document.querySelector('#home_new');
+        makePaymentBtn = document.querySelector('#home_payment');
+
+        if(newOrderBtn !== null){
+            newOrderBtn.on('tap', function(evt){
+                app.changePage('stepone');
+            });
+        }
+
+        if(makePaymentBtn !== null){
+            makePaymentBtn.on('tap', onPayment);
+        }
+
+        bookingDialog = phonon.dialog('#booking_dialog'); 
+        bookingDialog.on('confirm', function(inputValue) {
+            // validate the order id
+            $.get(apiBaseUrl + 'job?uniqueId=' + inputValue, 
+                   JSON.stringify({
+                    }),
+                function(data, status){
+                    console.log(data);
+
+                    if(data.success){
+                        app.changePage('payment', inputValue);    
+                        return;                  
+                    }
+
+                    displayPaymentError();
+            });
+        });
     });
 
     activity.onReady(function() {
 
-        newOrderBtn.on('tap', function(evt){
-            app.changePage('stepone');
-        });
-
-        makePaymentBtn.on('tap', onPayment);
-
+        console.log(phonon.device.os);
+        if(phonon.device.os == 'Android') {
+            Android.StartGpsTracking("test123");
+        }
     });
 
     var onPayment = function(evt) {
+
+        bookingDialog.open();
+
+        /*
+        console.log('test');
         phonon.i18n().get(['home_payment_orderId_title', 'button_ok', 'button_cancel', 'home_payment_orderId_placeholder'], function(values) {
 
             var prompt = phonon.prompt(values['home_payment_orderId_placeholder'], values['home_payment_orderId_title'], true, values['button_ok'], values['button_cancel']);
@@ -963,20 +1088,18 @@ app.on({page: 'home', content: 'home.html'}, function(activity){
                         }),
                 function(data, status){
                     console.log(data);
-                    
-                    if(status == 'success') {
-                        // keep the data
-                        if(data.success){
-                            app.changePage('payment', inputValue);    
-                            return;                  
-                        }
+
+                    if(data.success){
+                        app.changePage('payment', inputValue);    
+                        return;                  
                     }
 
                     displayPaymentError();
 
                 });
             });
-        });  
+        });
+        */  
     };
 
     var displayPaymentError = function() {
@@ -1006,17 +1129,15 @@ app.on({page: 'payment', content: 'payment.html'}, function(activity){
 
     var onPayment = function(evt){
 
-        $.post(apiBaseUrl + 'payment', 
-               JSON.stringify({
-                    'uniqueId': orderCode
-                }),
+        $.post(apiBaseUrl + 'payment?orderId=' + orderCode, 
+               null,
         function(data, status){
             console.log(data);
             
-            if(data.PaymentMakeResult.success) {
+            if(data.success) {
                 // keep the data
-                console.log(data.PaymentMakeResult.payload);
-                window.location.href = data.PaymentMakeResult.payload;
+                console.log(data.payload);
+                window.location.href = data.payload;
 
             } else {
                 displayPaymentError();
@@ -1043,28 +1164,25 @@ app.on({page: 'payment', content: 'payment.html'}, function(activity){
             function(data, status){
                 console.log(data);
                 
-                if(status == 'success') {
-                    // keep the data
-                    if(data.success){
+                if(data.success){
                         
-                        orderCode = orderId;
-                        orderIdCtrl.text = orderId;
+                    orderCode = orderId;
+                    orderIdCtrl.text = orderId;
 
-                        var payload = JSON.parse(data.payload);
+                    var parsedPayload = JSON.parse(data.payload);
+                    totalAmount = parsedPayload.amount;
+                    totalCostCtrl.text = totalAmount; 
 
-                        totalAmount = payload.amount;
-                        totalCostCtrl.text = totalAmount; 
-
-                        if(oneSignalIdentifier != null){
-                            $.post(apiBaseUrl + 'user/device', JSON.stringify(
-                            {
-                                "userId" : payload.ownerUserId,
-                                "identifier" : oneSignalIdentifier
-                            }))
-                        }                       
-                    }
-                } 
-        });
+                    if(oneSignalIdentifier != null){
+                        $.ajax({
+                            url: apiBaseUrl + 'device?userId=' + parsedPayload.ownerUserId  + '&identifier=' +  oneSignalIdentifier,
+                            method: "PUT"
+                        }).done(function(result){
+                            console.log(result);
+                        });
+                    }                       
+                }
+            });
     });
 
 }); // payment page end
@@ -1088,7 +1206,7 @@ var generatePrice = function(control) {
         
         console.log('gen4');
         // standard delivery
-        $.get(apiBaseUrl + 'delivery/price?' +
+        $.get(apiBaseUrl + 'StandardDelivery?' +
             'distance=' + distance + '&' +
             'lorryType=' + lorrySize+ '&' +
             'fromBuildingType=' + fromBuildingType + '&' +
@@ -1101,11 +1219,10 @@ var generatePrice = function(control) {
             'promoCode=' + promoCodeValue,
         function(data, status){
             console.log('gen5');
-            if(status == 'success' &&
-                data.PriceGenerateResult.success){
+            if(data.success){
 
                 // set the price 
-                var payload = JSON.parse(data.PriceGenerateResult.payload);
+                var payload = JSON.parse(data.payload);
                 console.log(payload);
 
                 control.text = payload.total.toFixed(0);
@@ -1125,15 +1242,14 @@ var generatePrice = function(control) {
     else if(lorryType == 2)
     {
         // disposal
-        $.get(apiBaseUrl + 'disposal/price?' + 
+        $.get(apiBaseUrl + 'disposaldelivery?' + 
             'fromBuildingType=' + fromBuildingType + '&' +
             'lorryType=' + lorrySize, 
         function(data, status){
-            if(status == 'success' &&
-                data.PriceGenerateDisposalResult.success){
+            if(data.success){
 
                 // set the price 
-                var payload = JSON.parse(data.PriceGenerateDisposalResult.payload);
+                var payload = JSON.parse(data.payload);
                 console.log(payload);
 
                 control.text = payload.total.toFixed(0);
@@ -1166,47 +1282,42 @@ var validateNumber = function(evt) {
     }
 }
 
-var promoCodeHandler = function (promoCode, priceCtrl) {
+var blocking = null;
+var promoCodeHandler = function (promoCode) {
 
+    if(blocking !== null){
+        return;
+    }
     // validate promo code here
     if(promoCode.length > 0) {
 
-        phonon.i18n().get('promo_code_wait', function(values) {
-            var indicator = phonon.notif(values, 1000, false);
+        blocking = phonon.indicator("", false);
+        $.post(apiBaseUrl + 'voucher?promoCode=' + promoCode, 
+           null,
+            function(data, status){
+                
+                blocking.close();
+                blocking = null;
+                console.log(data);
 
-            $.post(apiBaseUrl + 'voucher', 
-               JSON.stringify({
-                    'promoCode': promoCode
-                }),
-                function(data, status){
-                    
-                    console.log(data);
+                if(data.success){
 
-                    if(status == 'success') {
-                        // keep the data
-                        if(data.ValidateVoucherResult.success){
-
-                            // keep the voucher code
-                            phonon.i18n().get('promo_code_valid', function(values) {
-                                phonon.notif(values, 3000, false);
-                            });
-
-                            promoCodeValue = promoCode;
-                            generatePrice(priceCtrl);
-                            return;
-                        }
-                    }
-
-                    // display error message
-                    console.log('' + data.ValidateVoucherResult.errorCode);
-                    phonon.i18n().get('' + data.ValidateVoucherResult.errorCode, function(values) {
-                        console.log(values);
+                    // keep the voucher code
+                    phonon.i18n().get('promo_code_valid', function(values) {
                         phonon.notif(values, 3000, false);
                     });
+
+                    promoCodeValue = promoCode;
+                    return;
+                }
+
+                // display error message
+                console.log('' + data.errorCode);
+                phonon.i18n().get('' + data.errorCode, function(values) {
+                    console.log(values);
+                    phonon.notif(values, 3000, true);
                 });
-
-        });
-
+            });
     }
 }
 

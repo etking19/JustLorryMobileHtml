@@ -1,6 +1,9 @@
 {
     "leftpanel_title":"JustLorry",
     "leftpanel_about":"About Us",
+    "leftpanel_privacypolicy":"Privacy Policy",
+    "leftpanel_terms":"Terms of Use",
+    "leftpanel_refund":"Return and Refund Policy",
     "leftpanel_version":"version: ",
     
     "about_panel_title" : "About Us",
@@ -60,26 +63,27 @@
     "location_from" : "From Postcode",
     "location_to" : "To Postcode",
 
-    "promo_code_placeholder" : "Enter promo code here:",
+    "promo_code_header" : "Promo Code",
+    "promo_code_placeholder" : "Enter promo code here",
     "promo_code_wait" : "Validating...",
     
     "error_invalid_postcode" : "Invalid postcode.",
     "error_general" : "Internal error. Please try again later.",
 
+    "error_building_type" : "Building type not select.",
     
-    
-    "delivery_datetime":"Delivery Date & Time:",
+    "delivery_datetime":"Pickup Date & Time:",
     "contact_name":"Your Name (Denell Wong)",
     "contact_phone":"Contact Number (0123456789)",
     "contact_email":"Email Address (denell@justlorry.com)",
     
     "from_address_header" : "from",
     "from_address_unit" : "Unit",
-	"from_address_street" : "Street",
+	"from_address_street" : "From Street",
 	
     "to_address_header" : "to",
     "to_address_unit" : "Unit",
-    "to_address_street" : "Street",
+    "to_address_street" : "To Street",
 	
 	"building_type_title" : "Building Type",
 	"building_type_1" : "High rise with lift",
