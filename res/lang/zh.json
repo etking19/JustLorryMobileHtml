@@ -1,0 +1,178 @@
+{
+    "leftpanel_title":"JustLorry",
+    "leftpanel_about":"关于我们",
+    "leftpanel_privacypolicy":"私隐条例",
+    "leftpanel_terms":"使用条款",
+    "leftpanel_refund":"退货和退款政策",
+    "leftpanel_version":"版本: ",
+    
+    "about_panel_title" : "关于我们",
+    "about_panel_desc_1" : "JustLorry 是一家注册的物流公司，使用人和软件来管理运输的复杂性。",
+    "about_panel_desc_2" : "从巴生谷或槟城到柔佛的运输过程非常复杂。 目前，这是通过电话，电子表格和传真机的协调。 JustLorry 提供了一个基于网络的应用程序，简单化整个运输过程。 我们不仅仅是一个软件平台，我们拥有经验丰富的物流和人力管理的专家在这里帮助，以简单化的流程和确保您的货物顺利送达目的地。",
+    "about_panel_desc_3" : "JustLorry 是一个互联网时代的物流公司。",
+    "about_panel_contact" : "联系我们",
+
+    "button_ok" : "OK",
+    "button_cancel" : "取消",
+    
+    "bottom_next":"前进",
+    "bottom_back":"后退",
+    "bottom_reset":"重置",
+    "bottom_confirm":"确定",
+    "bottom_promo":"促销代码",
+    "bottom_details":"价格详情",
+    
+    "home_new" : "新订单",
+    "home_payment" : "付款",
+
+    "home_payment_orderId_title" : "预订预订ID",
+    "home_payment_orderId_placeholder" : "在这里输入您的预订ID。",
+
+    "error_home_payment" : "未找到记录。 请确保您输入正确的预订ID。",
+
+    "service_standard":"标准运输",
+    "service_disposal":"丢弃服务",
+    
+    "lorry_type1":"1 吨",
+    "lorry_type2":"3 吨",
+    "lorry_type3":"5 吨",
+    
+    "lorry_dim_type1":"270厘米 x 150厘米 x 180厘米 (长 x 宽 x 高)",
+    "lorry_dim_type2":"420厘米 x 210厘米 x 180厘米 (长 x 宽 x 高)",
+    "lorry_dim_type3":"510厘米 x 210厘米 x 180厘米 (长 x 宽 x 高)",
+    
+    "lorry_desc_type1":"最大毛重： 1000 公斤",
+    "lorry_desc_type2":"最大毛重： 2500 公斤",
+    "lorry_desc_type3":"最大毛重： 2500 公斤",
+    
+    "lorry_details" : "点击了解更多信息",
+    "lorry_panel_title": "卡车尺寸信息",
+    "lorry_panel_fridge": "一个冰箱",
+    "lorry_panel_washing_machine": "一个洗衣机",
+    "lorry_panel_wardrobe": "一个衣柜",
+    "lorry_panel_matress": "一张床垫",
+    "lorry_panel_sofa": "一张沙发",
+    
+    "lorry_panel_wardrobes": "两个衣柜",
+    "lorry_panel_dining_table": "餐桌和4把椅子",
+    "lorry_panel_sofas": "两张沙发",
+    
+    "lorry_panel_matresses": "一个床垫",
+    "lorry_panel_lshape_sofa": "L形沙发",
+    
+    "location_from" : "从： 邮政编码",
+    "location_to" : "至： 邮政编码",
+
+    "promo_code_header" : "促销代码",
+    "promo_code_placeholder" : "在此处输入促销代码",
+    "promo_code_wait" : "正在验证...",
+    
+    "error_invalid_postcode" : "邮政编码无效。",
+    "error_general" : "内部错误。 请稍后再试。",
+
+    "error_pickup_time" : "请选择提取日期和时间。",
+    "error_building_type" : "请选择建筑类型。",
+    
+    "delivery_datetime":"提取日期和时间:",
+    "contact_name":"您的姓名（John Doe）",
+    "contact_phone":"联系电话（0123456789）",
+    "contact_email":"电子邮件地址（care@justlorry.com）",
+    
+    "from_address_header" : "从",
+    "from_address_unit" : "单位",
+	"from_address_street" : "从： 街道地址",
+	
+    "to_address_header" : "至",
+    "to_address_unit" : "单位",
+    "to_address_street" : "至: 街道地址",
+	
+	"building_type_title" : "建筑类型",
+	"building_type_1" : "高层有电梯",
+	"building_type_2" : "高层无电梯",
+	"building_type_3" : "排屋",
+	
+    "promo_code_valid" : "促销代码有效。",
+    "2303" : "促销代码无效。",
+    "2304" : "促销代码已过期。",
+    "2305" : "使用此促销代码所需的最低购买金额。",
+    "2306" : "噢噢，所有凭证已兑换。 请下次再试。",
+
+    "error_general" : "我们在执行此操作时遇到一些技术难题，请稍后再试。",
+    "error_street_address" : "请输入房屋名称或街道地址。",
+    "error_country_invalid" : "地址无效。",
+
+	"panel_price_title" : "透明定价",
+    "panel_price_fuel" : "燃料和收费",
+    "panel_price_maintenance" : "汽车保养",
+    "panel_price_labor" : "人力",
+    "panel_price_partner" : "合作伙伴",
+    "panel_price_justlorry" : "JustLorry",
+    
+	"panel_price_fac1" : "价格仅包括车辆和司机。",
+	"panel_price_fac2" : "可以在“附加服务”下预订帮助装载和卸载的人力。",
+	"panel_price_fac3" : "车辆司机不会协助装卸货物。",
+    
+    "additional_service":"附加服务",
+	"service_labor":"人力",
+    "service_assembly_dissasembly": "装配和拆卸",
+	
+	"panel_service_labor_title" : "人力",
+    "panel_service_labor_man":" 人（每人MYR ##）",
+	"panel_service_labor_0" : "不用人力",
+	"panel_service_labor_0_desc" : "车辆司机不会协助装卸货物。 您有家人或朋友帮助你携带物品。 请确保他们在目的地，以帮助卸载.",
+	"panel_service_labor_1" : "一个人",
+	"panel_service_labor_1_desc" : "您希望有人帮助移动轻物品，如箱子，袋子，椅子等。",
+	"panel_service_labor_2" : "两个人",
+	"panel_service_labor_2_desc" : "您希望有人帮助移动冰箱，洗衣机，餐桌，沙发等物品。",
+	"panel_service_labor_3" : "三个人或以上",
+	"panel_service_labor_3_desc" : "您希望有人帮忙移动房子里的所有物品.",
+	
+	"popover_service_labor_0" : "不用人力",
+	"popover_service_labor_1" : "一个人",
+	"popover_service_labor_2" : "两个人",
+	"popover_service_labor_3" : "三个人",
+	"popover_service_labor_4" : "四个人",
+	"popover_service_labor_5" : "五个人",
+	
+	"panel_service_assembly_title" : "装配/拆卸",
+    "panel_service_bed":"床 - 任何大小",
+	"panel_service_bed_desc" : "（MYR 30 / 项目）",
+    "panel_service_wardrobe": "衣柜，书架",
+	"panel_service_wardrobe_desc" : "（MYR 120 / 项目）",
+    "panel_service_dining_table": "餐桌",
+	"panel_service_dining_table_desc" : "（MYR 20 / 项目）",
+    "panel_service_office_table" : "办公桌",
+	"panel_service_office_table_desc" : "(MYR 50 / 项目）)",
+	"btn_service_confirm" : "确定",
+
+	"popover_service_assembly_0" : "不用",
+	"popover_service_assembly_1" : "一项",
+	"popover_service_assembly_2" : "两项",
+	"popover_service_assembly_3" : "三项",
+	"popover_service_assembly_4" : "四项",
+	"popover_service_assembly_5" : "五项",
+	
+    "service_bubble_cost" : "MYR 200 / 卷",
+    "service_shrink_cost" : "MRY 50/ 卷",
+
+
+    "payment_statement" : "感谢您选择 JustLorry.com",
+    "payment_desc" : "您的预订ID是： ",
+    "payment_desc_2" : "总金额： ",
+    "payment_desc_3" : "请支付总金额，让我们安排您的预订。 付款成功后，您将收到确认email/sms。",
+    "payment_button" : "现在付款",
+
+
+    "location_pickup" : "从",
+    "location_destination" : "至",
+    "location_search" : "搜索",
+
+	"home_title":"JustLorry",
+    "stepone_title":"新订单",
+    "steptwo_title":"信息",
+    "confirmation_title": "确认",
+    "payment_title" : "付款",
+
+    "footer_company" : "Just Supply Chain Berhad (1193116-H)"
+    
+}

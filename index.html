@@ -67,6 +67,7 @@
         <link rel="stylesheet" href="dist/css/custom.css" />
         <link rel="stylesheet" href="res/font-awesome-4.6.3/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="config.js"></script>
 
         <title>JustLorry</title>
 
@@ -321,13 +322,17 @@
         <div class="popover" id="language-popover">
             <ul class="list">
                 <li class="lang-en">
-                    <a class="lang-en pull-left fa fa-language"></a>
-                    <a class="lang-en padded-list">English</a>
+                    <i class="pull-left fa fa-language"></i>
+                    <a class="padded-list">English</a>
                 </li>
-<!--                 <li class="lang-ms">
-                    <a class="lang-ms pull-left fa fa-language"></a>
-                    <a class="lang-ms padded-list">Malay</a>
-                </li> -->
+                <li class="lang-zh">
+                    <i class="pull-left fa fa-language"></i>
+                    <a class="padded-list">中文</a>
+                </li>
+                <li class="lang-ms">
+                    <i class="pull-left fa fa-language"></i>
+                    <a class="padded-list">Bahasa</a>
+                </li>
             </ul>
         </div>
         
@@ -617,6 +622,20 @@
             </div>
         </div>
 
+        <!-- Location selection panel -->
+<!--         <div id="panel-location" class="panel-full">
+            <header class="header-bar">
+                <div class="center">
+                    <h1 class="title" data-i18n="text: location_pickup"></h1>
+                </div>
+                <a class="btn icon icon-close pull-right" href="#" data-panel-close="true"></a>
+            </header>
+            <div class="content">
+                <input id="location-input" class="controls" type="text" data-i18n="placeholder: location_search">
+                <div id="location-map"></div>
+                <div id="location-pano"></div>
+            </div>
+        </div> -->
 
         <!-- pages content -->
         <home data-page="true"></home>
@@ -635,6 +654,7 @@
             $("#divTerms").load("res/assets/TermsOfUse.html");
         </script>
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArNVgfBbl4WUqHdu-ycAE-pL0TGvok8Us&libraries=places"></script>
     </body>
 </html>
         

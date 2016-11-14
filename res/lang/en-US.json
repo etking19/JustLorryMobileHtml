@@ -70,12 +70,13 @@
     "error_invalid_postcode" : "Invalid postcode.",
     "error_general" : "Internal error. Please try again later.",
 
+    "error_pickup_time" : "Pickup date time not set.",
     "error_building_type" : "Building type not select.",
     
     "delivery_datetime":"Pickup Date & Time:",
-    "contact_name":"Your Name (Denell Wong)",
+    "contact_name":"Your Name (John Doe)",
     "contact_phone":"Contact Number (0123456789)",
-    "contact_email":"Email Address (denell@justlorry.com)",
+    "contact_email":"Email Address (care@justlorry.com)",
     
     "from_address_header" : "from",
     "from_address_unit" : "Unit",
@@ -97,6 +98,8 @@
     "2306" : "Oops, all voucher has been redeemed. Try again next time.",
 
     "error_general" : "We facing some techincal difficulty to perform this action, please try again later.",
+    "error_street_address" : "Please insert premise name or street address.",
+    "error_country_invalid" : "Invalid address.",
 
 	"panel_price_title" : "Transparent Pricing",
     "panel_price_fuel" : "Fuel & Toll",
@@ -160,6 +163,9 @@
     "payment_button" : "Pay Now",
 
 
+    "location_pickup" : "From",
+    "location_destination" : "To",
+    "location_search" : "Search",
 
 	"home_title":"JustLorry",
     "stepone_title":"New Order",

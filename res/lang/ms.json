@@ -1,79 +1,178 @@
 {
     "leftpanel_title":"JustLorry",
     "leftpanel_about":"Mengenai Kami",
+    "leftpanel_privacypolicy":"Dasar Privasi",
+    "leftpanel_terms":"Syarat-syarat Penggunaan",
+    "leftpanel_refund":"Terma Bayaran Balik",
     "leftpanel_version":"versi: ",
     
-    "bottom_next":"Terus",
+    "about_panel_title" : "Mengenai Kami",
+    "about_panel_desc_1" : "JustLorry adalah sebuah syarikat pengangkutan yang berdaftar yang menggunakan orang dan perisian untuk menguruskan kerumitan penghantaran.",
+    "about_panel_desc_2" : "Menghantar sesuatu dari Lembah Klang atau Pulau Pinang ke Johor memerlukan penyelarasan kompleks. Kini dilakukan dengan telefon, spreadsheet, dan mesin faks. JustLorry menyediakan aplikasi berasaskan web yang menawarkan jarak penglihatan masa sebenar penghantaran anda. Dan kita tidak hanya satu platform perisian: pakar-pakar logistik dan pengurusan manusia kami yang berpengalaman berada di sini untuk membantu di setiap langkah perjalanan.",
+    "about_panel_desc_3" : "JustLorry adalah sebuah syarikat pengangkutan untuk era Internet.",
+    "about_panel_contact" : "Hubungi Kami",
+
+    "button_ok" : "OK",
+    "button_cancel" : "Batal",
+    
+    "bottom_next":"Seterusnya",
     "bottom_back":"Kembali",
-    "bottom_confirm":"Sah",
+    "bottom_reset":"Reset",
+    "bottom_confirm":"Sahkan",
     "bottom_promo":"Kod Promosi",
-    "bottom_details":"Lihat Butiran",
+    "bottom_details":"Harga Butiran",
     
-    "service_standard":"Standard",
-    "service_disposal":"Disposal",
+    "home_new" : "Tempahan Baru",
+    "home_payment" : "Buat Bayaran",
+
+    "home_payment_orderId_title" : "ID Tempahan",
+    "home_payment_orderId_placeholder" : "Masukkan id tempahan anda di sini.",
+
+    "error_home_payment" : "Rekod tidak dijumpai. Sila pastikan anda memasukkan id tempahan betul.",
+
+    "service_standard":"Tempahan Biasa",
+    "service_disposal":"Pembuangan",
     
-    "lorry_type1":"1 tan",
-    "lorry_type2":"3 tan",
-    "lorry_type3":"5 tan",
+    "lorry_type1":"1 Ton",
+    "lorry_type2":"3 Ton",
+    "lorry_type3":"5 Ton",
     
     "lorry_dim_type1":"270cm x 150cm x 180cm (P x L x T)",
     "lorry_dim_type2":"420cm x 210cm x 180cm (P x L x T)",
     "lorry_dim_type3":"510cm x 210cm x 180cm (P x L x T)",
     
-    "lorry_desc_type1":"Berat Maksima: 1000 Kilos",
-    "lorry_desc_type2":"Berat Maksima: 2500 Kilos",
-    "lorry_desc_type3":"Berat Maksima: 2500 Kilos",
+    "lorry_desc_type1":"Maksimum Berat kasar: 1000 KGS",
+    "lorry_desc_type2":"Maksimum Berat kasar: 2500 KGS",
+    "lorry_desc_type3":"Maksimum Berat kasar: 2500 KGS",
     
-
-    "lorry_details" : "More Info",
-    "lorry_panel_title": "Truck Size",
-    "lorry_panel_fridge": "Fridge",
-    "lorry_panel_washing_machine": "Washing Machine",
-    "lorry_panel_wardrobe": "1 Wardrobe",
-    "lorry_panel_matress": "1 Matress",
+    "lorry_details" : "Klik untuk maklumat lanjut",
+    "lorry_panel_title": "Maklumat Kenderaan",
+    "lorry_panel_fridge": "Peti Sejuk",
+    "lorry_panel_washing_machine": "Mesin Basuh",
+    "lorry_panel_wardrobe": "1 Almari Pakaian",
+    "lorry_panel_matress": "1 Tilam",
     "lorry_panel_sofa":"Sofa",
     
-    "lorry_panel_wardrobes": "2 Wardrobes",
-    "lorry_panel_dining_table": "Dining Table and 4 Chairs",
-    "lorry_panel_sofas": "2 Sofas",
+    "lorry_panel_wardrobes": "2 Almari Pakaian",
+    "lorry_panel_dining_table": "Meja Makan dan 4 Kerusi",
+    "lorry_panel_sofas": "2 Sofa",
     
-    "lorry_panel_matresses": "2 Matresses",
+    "lorry_panel_matresses": "2 Tilam",
     "lorry_panel_lshape_sofa": "L-Shape Sofa",
     
-    "location_from" : "Dari Poskod",
-    "location_to" : "Ke Poskod",
+    "location_from" : "Dari Postcode",
+    "location_to" : "Ke Postcode",
 
+    "promo_code_header" : "Kod Promosi",
+    "promo_code_placeholder" : "Masukkan kod promo sini",
+    "promo_code_wait" : "Sedang mengesah...",
     
-    "delivery_datetime":"Delivery Date & Time:",
-    "contact_name":"Your Name (Denell Wong)",
-    "contact_phone":"Contact Number (0123456789)",
-    "contact_email":"Email Address (denell@justlorry.com)",
+    "error_invalid_postcode" : "Poskod tidak sah.",
+    "error_general" : "Masalah sistem. Sila cuba sebentar lagi",
 
-    "from_address" : "Alamat Pengambilan",
-    "to_address" : "Alamat Penghantaran",
+    "error_pickup_time" : "Tarikh dan masa tidak ditetapkan.",
+    "error_building_type" : "Jenis bangunan tidak dipilih.",
     
+    "delivery_datetime":"Tarikh dan masa pungut:",
+    "contact_name":"Nama Anda (John Doe)",
+    "contact_phone":"Nombor Telefon (0123456789)",
+    "contact_email":"Alamat Emel (care@justlorry.com)",
     
+    "from_address_header" : "Dari",
+    "from_address_unit" : "Unit",
+    "from_address_street" : "Dari: Alamat Jalan",
     
+    "to_address_header" : "Ke",
+    "to_address_unit" : "Unit",
+    "to_address_street" : "Ke: Alamat Jalan",
     
-    "additional_service":"Additional Service",
-    "service_labor":"<input type=\"checkbox\">Labor<span></span>",
-    "service_assembly_dissasembly": "<input type=\"checkbox\">Assembly Disassembly<span>",
-    "service_bubble_wrapping" : "<input type=\"checkbox\">Bubble Wrapping<span></span>",
-    "service_shrink_wrapping" : "<input type=\"checkbox\">Shrink Wrapping<span></span>",
+    "building_type_title" : "Jenis Bangunan",
+    "building_type_1" : "Bangunan tinggi dengan lif",
+    "building_type_2" : "bangunan tinggi tiada lif",
+    "building_type_3" : "Rumah berteres",
     
-    "service_labor_man":"Man Power (MYR 100/Person)",
-        
-    "service_bed":"Bed - Any Size (MYR 30/Item)",
-    "service_wardrobe": "Wardrobe, Bookshelf, Cupboard (MYR 120/Item)",
-    "service_dining_table": "Dining Table (MYR 20/Item)",
-    "service_office_table" : "Office Table (MYR 50/Item)",
+    "promo_code_valid" : "Kod promo sah.",
+    "2303" : "Kod promo tidak sah.",
+    "2304" : "Kod promosi tamat tempoh.",
+    "2305" : "Memerlukan pembelian minimum untuk menggunakan kod promo ini.",
+    "2306" : "Oops, semua baucar telah ditebus. Cuba lagi lain kali.",
 
-    "service_bubble_cost" : "MRY 200/Roll",
-    "service_shrink_cost" : "MRY 50/Roll",
+    "error_general" : "Kami menghadapi beberapa kesukaran teknikal untuk melaksanakan tindakan ini, sila cuba lagi kemudian.",
+    "error_street_address" : "Sila masukkan nama premis atau alamat jalan.",
+    "error_country_invalid" : "Alamat tidak sah.",
 
-	"home_title":"JustLorry.com",
-    "stepone_title":"New Order",
-    "steptwo_title":"Information",
-    "confirmation_title": "Confirmation"
+    "panel_price_title" : "Harga Telus",
+    "panel_price_fuel" : "Petrol & Tol",
+    "panel_price_maintenance" : "Penyelenggaraan",
+    "panel_price_labor" : "Pekerja",
+    "panel_price_partner" : "Rakan Kongsi",
+    "panel_price_justlorry" : "JustLorry",
+    
+    "panel_price_fac1" : "Harga yang dipaparkan hanya untuk sewa kenderaan dan pemandu sahaja.",
+    "panel_price_fac2" : "Pekerja untuk membantu memuatkan dan memunggah boleh ditempah di bawah \"Perkhidmatan Tambahan\"",
+    "panel_price_fac3" : "Pemandu kenderaan tidak akan membantu dalam memuatkan dan memunggah barang-barang.",
+    
+    "additional_service":"Perkhidmatan Tambahan",
+    "service_labor":"Pekerja",
+    "service_assembly_dissasembly": "Buka Pasang Perabot",
+    
+    "panel_service_labor_title" : "Pekerja",
+    "panel_service_labor_man":" pekerja (MYR ##/Pekerja)",
+    "panel_service_labor_0" : "0 pekerja",
+    "panel_service_labor_0_desc" : "Pemandu kenderaan tidak akan membantu dalam memuatkan dan memunggah barang-barang. Sila pastikan ada rakan anda untuk membantu memuatkan dan memunggah di destinasi nanti!",
+    "panel_service_labor_1" : "1 pekerja",
+    "panel_service_labor_1_desc" : "Anda ingin seseorang yang membantu untuk memindahkan barang-barang ringan seperti kotak, beg, kerusi, dan lain-lain.",
+    "panel_service_labor_2" : "2 pekerja",
+    "panel_service_labor_2_desc" : "Anda ingin pekerja membantu untuk memindahkan barang-barang peti sejuk, mesin basuh, meja makan, sofa, dan lain-lain",
+    "panel_service_labor_3" : "3 pekerja atau lebih",
+    "panel_service_labor_3_desc" : "Anda ingin pekerja membantu untuk memindahkan kesemua barang dalam rumah.",
+    
+    "popover_service_labor_0" : "0 pekerja",
+    "popover_service_labor_1" : "1 pekerja",
+    "popover_service_labor_2" : "2 pekerja",
+    "popover_service_labor_3" : "3 pekerja",
+    "popover_service_labor_4" : "4 pekerja",
+    "popover_service_labor_5" : "5 pekerja",
+    
+    "panel_service_assembly_title" : "Buka Pasang Perabot",
+    "panel_service_bed":"Katil - Semua Saiz",
+    "panel_service_bed_desc" : "(MYR 30 / Unit)",
+    "panel_service_wardrobe": "Almari / Rak",
+    "panel_service_wardrobe_desc" : "(MYR 120 / Unit)",
+    "panel_service_dining_table": "Meja Makan",
+    "panel_service_dining_table_desc" : "(MYR 20 / Unit)",
+    "panel_service_office_table" : "Meja Pejabat",
+    "panel_service_office_table_desc" : "(MYR 50 / Unit)",
+    "btn_service_confirm" : "Seterusnya",
+
+    "popover_service_assembly_0" : "0 unit",
+    "popover_service_assembly_1" : "1 unit",
+    "popover_service_assembly_2" : "2 unit",
+    "popover_service_assembly_3" : "3 unit",
+    "popover_service_assembly_4" : "4 unit",
+    "popover_service_assembly_5" : "5 unit",
+    
+    "service_bubble_cost" : "MRY 200/Gulung",
+    "service_shrink_cost" : "MRY 50/Gulung",
+
+
+    "payment_statement" : "Terima kasih kerana memilih JustLorry.com",
+    "payment_desc" : "ID tempahan anda ialah: ",
+    "payment_desc_2" : "Jumlah keseluruhan: ",
+    "payment_desc_3" : "Sila bayar jumlah keseluruhan sebelum kami menguruskan tempahan anda. Anda akan menerima pengesahan setelah pembayaran berjaya dibuat.",
+    "payment_button" : "Bayar Sekarang",
+
+
+    "location_pickup" : "Dari",
+    "location_destination" : "Ke",
+    "location_search" : "Cari",
+
+    "home_title":"JustLorry",
+    "stepone_title":"Tempahan Baru",
+    "steptwo_title":"Informasi",
+    "confirmation_title": "Pengesahan",
+    "payment_title" : "Bayaran",
+
+    "footer_company" : "Just Supply Chain Berhad (1193116-H)"
     
 }

@@ -19,9 +19,6 @@ phonon.i18n().bind();
 
 var app = phonon.navigator();
 
-//var apiBaseUrl = "http://52.40.249.160/just/api/";
-var apiBaseUrl = "https://api.justlorry.com/api/";
-
 var oneSignalIdentifier = null;
 var distance = 0;
 var lorrySize = 1;
@@ -40,6 +37,9 @@ var recommendedLaborCount = 0;
 
 var fromPostcode = null, toPostcode = null;		// not in use, for reference only
 var fromLocation = null, toLocation = null;
+var fromLocationBound = null, toLocationBound = null;
+var fromGpsLat = null, fromGpsLng = null;
+var toGpsLat = null, toGpsLng = null;
 
 var fromAddUnit = null, fromAddStreet = null, toAddUnit = null, toAddStreet = null;
 var contactName = null, contactNumber = null, contactEmail = null;
@@ -58,9 +58,13 @@ document.querySelector('.lang-en').on('tap', function(evt){
     phonon.updateLocale('en-US');
 });
 
-// document.querySelector('.lang-ms').on('tap', function(evt){
-//     phonon.updateLocale('ms');
-// });
+document.querySelector('.lang-zh').on('tap', function(evt){
+    phonon.updateLocale('zh');
+});
+
+document.querySelector('.lang-ms').on('tap', function(evt){
+    phonon.updateLocale('ms');
+});
 
 $.ajaxSetup({
     headers: 
@@ -136,6 +140,9 @@ app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
                         fromLocation = payload.postCodeAddFrom;
                         toLocation = payload.postCodeAddTo;
                         distance = payload.distance / 1000;
+
+                        fromLocationBound = payload.fromBound;
+                        toLocationBound = payload.toBound;
                         
                         // generate price
                         generatePrice(currentPrice);
@@ -377,6 +384,7 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
     var txtFromLocation, txtToLocation;
     var divTo;
 
+    var fromAutocomplete = null, toAutocomplete = null;
     
     activity.onCreate(function(){
         
@@ -389,7 +397,7 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
         dateTime = document.querySelector('#delivery_datetime');
         
         fromAddUnitCtrl = document.querySelector('#address_from_unit');
-		fromAddStreetCtrl = document.querySelector('#address_from_street');
+        fromAddStreetCtrl = document.querySelector('#address_from_street');
         toAddUnitCtrl = document.querySelector('#address_to_unit');
 		toAddStreetCtrl = document.querySelector('#address_to_street');
         
@@ -407,18 +415,183 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
 		
         document.querySelector('#nextsteptwo').on('tap', onAction);
         promoCode.on('tap', onPromoCode);
-        promoDialog.on('confirm', function(inputValue)
-        {
-            promoCodeHandler(inputValue);
-            generatePrice(currentPrice);
-        });
-		
+
 		$('input:radio[name="building-type-from"]').change(onBuildingTypeFromChange);
 		$('input:radio[name="building-type-to"]').change(onBuildingTypeToChange);
 
-        promoDialog = phonon.dialog('#promo_dialog'); 
+        promoDialog = phonon.dialog('#promo_dialog');
+        promoDialog.on('confirm', function(inputValue) {
+            promoCodeHandler(inputValue);
+            generatePrice(currentPrice);
+        }); 
+
+        // setup from auto complete text box
+        fromAutocomplete = new google.maps.places.Autocomplete(
+            fromAddStreetCtrl,
+            {
+                types: ['geocode']
+            });
+        fromAutocomplete.addListener('place_changed', fromAddChange);
+
+        if(fromLocationBound !== null){
+            var sw = new google.maps.LatLng(fromLocationBound.southwest.lat, fromLocationBound.southwest.lng);
+            var ne = new google.maps.LatLng(fromLocationBound.northeast.lat, fromLocationBound.northeast.lng);
+            fromAutocomplete.setBounds(new google.maps.LatLngBounds(sw, ne));
+        }
+
+        // setup to auto complete text box
+        toAutocomplete = new google.maps.places.Autocomplete(
+            toAddStreetCtrl,
+            {
+                types: ['geocode']
+            });
+        toAutocomplete.addListener('place_changed', toAddChange);
+
+        if(toLocationBound !== null){
+            var sw = new google.maps.LatLng(toLocationBound.southwest.lat, toLocationBound.southwest.lng);
+            var ne = new google.maps.LatLng(toLocationBound.northeast.lat, toLocationBound.northeast.lng);
+            toAutocomplete.setBounds(new google.maps.LatLngBounds(sw, ne));
+        }
+
     });
+
+    var componentForm = {
+
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name',
+        premise : 'long_name'
+    };
+
+    function checkType(component) {
+
+        return component.types[0] === 'route';
+    }
+
+    function checkPremise(component) {
+        return component.types[0] === 'premise';
+    }
+
+    function checkCountry(component) {
+        return component.types[0] === 'country';
+    }
+
+    var fromAddChange = function() {
+
+        var place = fromAutocomplete.getPlace();
+        console.log(place);
+
+        var country = place.address_components.find(checkCountry);
+        if(country !== undefined &&
+            country.long_name !== 'Malaysia'){
+
+            // route address not found
+            fromAddStreetCtrl.value = '';
+
+            phonon.i18n().get(['error_country_invalid', 'button_cancel'], function(values) {
+                phonon.notif(values['error_country_invalid'], 2000, true, values['button_cancel']);
+            });
+
+            return;
+        }
+
+        var premise = place.address_components.find(checkPremise);
+        if(premise !== undefined){
+
+            // found the premise name
+            fromAddStreetCtrl.value = premise.long_name;
+
+            fromGpsLat = place.geometry.location.lat();
+            fromGpsLng = place.geometry.location.lng();
+            return;
+        }
+
+        var result = place.address_components.find(checkType);
+        console.log(result);
+        if(result !== undefined){
+
+            // found the street name
+            fromAddStreetCtrl.value = result.long_name; 
+
+            fromGpsLat = place.geometry.location.lat();
+            fromGpsLng = place.geometry.location.lng();
+
+        } else {
+
+            // route address not found
+            fromAddStreetCtrl.value = '';
+
+            phonon.i18n().get(['error_street_address', 'button_cancel'], function(values) {
+                phonon.notif(values['error_street_address'], 2000, true, values['button_cancel']);
+            });
+        }
+    }
     
+    var toAddChange = function() {
+
+        var place = toAutocomplete.getPlace();
+        console.log(place);
+
+        var country = place.address_components.find(checkCountry);
+        if(country !== undefined &&
+            country.long_name !== 'Malaysia'){
+
+            // route address not found
+            toAddStreetCtrl.value = '';
+
+            phonon.i18n().get(['error_country_invalid', 'button_cancel'], function(values) {
+                phonon.notif(values['error_country_invalid'], 2000, true, values['button_cancel']);
+            });
+
+            return;
+        }
+
+        var premise = place.address_components.find(checkPremise);
+        if(premise !== undefined){
+
+            // found the premise name
+            toAddStreetCtrl.value = premise.long_name;
+
+            toGpsLat = place.geometry.location.lat();
+            toGpsLng = place.geometry.location.lng();
+
+            return;
+        }
+
+        var result = place.address_components.find(checkType);
+        console.log(result);
+        if(result !== undefined){
+
+            // found the street name
+            toAddStreetCtrl.value = result.long_name; 
+
+            toGpsLat = place.geometry.location.lat();
+            toGpsLng = place.geometry.location.lng();
+        } else {
+
+            // route address not found
+            toAddStreetCtrl.value = '';
+
+            phonon.i18n().get(['error_street_address', 'button_cancel'], function(values) {
+                phonon.notif(values['error_street_address'], 2000, true, values['button_cancel']);
+            });
+        }
+    }
+
+    var onAddressFrom = function(evt) {
+        
+        phonon.panel('#panel-location').open();
+
+        // to show the map
+        google.maps.event.trigger(map, 'resize');
+        google.maps.event.trigger(panorama, 'resize');
+
+        map.setCenter(latestPos);
+    }
+
     activity.onReady(function(){
         // setup the location base on the postcode insert
         console.log(fromLocation);
@@ -542,8 +715,7 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
 
         if (target.getAttribute('data-order') === 'steptwo-next'){
             // go to next page
-            if(dateTime.validity.valid == false ||
-              name.validity.valid == false ||
+            if(name.validity.valid == false ||
               contact.validity.valid == false ||
               email.validity.valid == false ||
 			  fromAddUnitCtrl.validity.valid == false ||
@@ -553,11 +725,20 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
                 return;
             }
             
+            if(dateTime.value === ''){
+
+                phonon.i18n().get(['error_pickup_time'], function(values) {
+                    phonon.notif(values['error_pickup_time'], 1500, false);
+                });
+
+                return;
+            }
+
             // check for building selection
             if(fromBuildingType === 0){
 
                 phonon.i18n().get(['error_building_type'], function(values) {
-                    phonon.notif(values['error_building_type'], 1000, false);
+                    phonon.notif(values['error_building_type'], 1500, false);
                 });
 
                 return;
@@ -567,7 +748,7 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
                 toBuildingType === 0){
                 
                 phonon.i18n().get(['error_building_type'], function(values) {
-                    phonon.notif(values['error_building_type'], 1000, false);
+                    phonon.notif(values['error_building_type'], 1500, false);
                 });
                 return;
             }
@@ -588,7 +769,7 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
 			fromAddStreet = fromAddStreetCtrl.value;
 			toAddUnit = toAddUnitCtrl.value;
 			toAddStreet = toAddStreetCtrl.value;
-			
+
 			console.log(deliverDateTime);
 			console.log(contactName);
 			console.log(contactNumber);
@@ -616,8 +797,15 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
         */
 
         ga('send', 'event', 'mobile', 'click', 'promo_code');
-    };   
-    
+    }; 
+
+    var latestPos = {lat: 3.1371243, lng: 101.596567};
+    var map;
+    var panorama;
+
+    function initializeGoogle() {
+
+    }
 }); // step2 page end
 
 app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
@@ -909,7 +1097,9 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
             //"countryId" : '1', // TODO
             "postcode" : fromPostcode,
             "contactPerson" :  contactName,
-            "contactNumber" : contactNumber
+            "contactNumber" : contactNumber,
+            "gpsLongitude" : toGpsLng,
+            "gpsLatitude" : toGpsLat
         }];
 
         if(lorryType == 2){
@@ -932,7 +1122,7 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
             if(oneSignalIdentifier != null){
 
                 $.ajax({
-                    url: apiBaseUrl + 'device?userId=' + userId + '&identifier=' +  oneSignalIdentifier,
+                    url: apiBaseUrl + 'device?userId=' + userId + '&newIdentifier=' +  oneSignalIdentifier,
                     method: "PUT"
                 }).done(function(result){
                     console.log(result);
@@ -986,7 +1176,9 @@ app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
                     //"countryId" : '1', // TODO
                     "postcode" : fromPostcode,
                     "contactPerson" :  contactName,
-                    "contactNumber" : contactNumber
+                    "contactNumber" : contactNumber,
+                    "gpsLongitude" : fromGpsLng,
+                    "gpsLatitude" : fromGpsLat
                 }],
                 "addressTo" : addressTo
             }))
@@ -1175,7 +1367,7 @@ app.on({page: 'payment', content: 'payment.html'}, function(activity){
 
                     if(oneSignalIdentifier != null){
                         $.ajax({
-                            url: apiBaseUrl + 'device?userId=' + parsedPayload.ownerUserId  + '&identifier=' +  oneSignalIdentifier,
+                            url: apiBaseUrl + 'device?userId=' + parsedPayload.ownerUserId  + '&newIdentifier=' +  oneSignalIdentifier,
                             method: "PUT"
                         }).done(function(result){
                             console.log(result);
