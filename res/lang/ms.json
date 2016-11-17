@@ -10,7 +10,8 @@
     "about_panel_desc_1" : "JustLorry adalah sebuah syarikat pengangkutan yang berdaftar yang menggunakan orang dan perisian untuk menguruskan kerumitan penghantaran.",
     "about_panel_desc_2" : "Menghantar sesuatu dari Lembah Klang atau Pulau Pinang ke Johor memerlukan penyelarasan kompleks. Kini dilakukan dengan telefon, spreadsheet, dan mesin faks. JustLorry menyediakan aplikasi berasaskan web yang menawarkan jarak penglihatan masa sebenar penghantaran anda. Dan kita tidak hanya satu platform perisian: pakar-pakar logistik dan pengurusan manusia kami yang berpengalaman berada di sini untuk membantu di setiap langkah perjalanan.",
     "about_panel_desc_3" : "JustLorry adalah sebuah syarikat pengangkutan untuk era Internet.",
-    "about_panel_contact" : "Hubungi Kami",
+    "about_panel_contact" : "Emel Kami",
+    "about_panel_phone" : "Telefon Kami",
 
     "button_ok" : "OK",
     "button_cancel" : "Batal",
@@ -24,11 +25,17 @@
     
     "home_new" : "Tempahan Baru",
     "home_payment" : "Buat Bayaran",
+    "home_orderstatus" : "Status Tempahan",
+    "home_ikea" : "Tempahan IKEA",
 
     "home_payment_orderId_title" : "ID Tempahan",
     "home_payment_orderId_placeholder" : "Masukkan id tempahan anda di sini.",
 
     "error_home_payment" : "Rekod tidak dijumpai. Sila pastikan anda memasukkan id tempahan betul.",
+
+    "tracking_orderId_placeholder" : "Masukkan id tempahan anda di sini.",
+    "tracking_orderId" : "ID Tempahan:",
+    "tracking_pickup_date" : "Tarikh dan Masa Pungut:",
 
     "service_standard":"Tempahan Biasa",
     "service_disposal":"Pembuangan",
@@ -172,6 +179,7 @@
     "steptwo_title":"Informasi",
     "confirmation_title": "Pengesahan",
     "payment_title" : "Bayaran",
+    "tracking_title" : "Status Tempahan",
 
     "footer_company" : "Just Supply Chain Berhad (1193116-H)"
     

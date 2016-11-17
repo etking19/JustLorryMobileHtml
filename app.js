@@ -56,14 +56,32 @@ var colorDeselect = "rgb(241, 241, 241)"
 // handling for language selections
 document.querySelector('.lang-en').on('tap', function(evt){
     phonon.updateLocale('en-US');
+
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("locale", "en-US");
+    }
+
+    phonon.setPreference("en-US");
 });
 
 document.querySelector('.lang-zh').on('tap', function(evt){
     phonon.updateLocale('zh');
+
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("locale", "zh");
+    }
+
+    phonon.setPreference("zh");
 });
 
 document.querySelector('.lang-ms').on('tap', function(evt){
     phonon.updateLocale('ms');
+
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("locale", "ms");
+    }
+
+    phonon.setPreference("ms");
 });
 
 $.ajaxSetup({
@@ -73,6 +91,286 @@ $.ajaxSetup({
         'Content-Type' : 'application/json'
     },
     dataType: 'json'
+});
+
+app.on({page: 'tracking', content: 'orderstatus.html'}, function(activity){
+
+    var map, resultDiv;
+    var latestPos = {lat: 3.1371243, lng: 101.596567};
+    var mUniqueId;
+    var markers = [];
+    var refreshIdentifier = null;
+
+    activity.onCreate(function(){
+        
+        initMap();
+
+        var orderSubmitBtn = document.querySelector('#tracking_confirm');
+        var orderIdInput = document.querySelector('#tracking_id');
+        orderSubmitBtn.on('tap', function(){
+            mUniqueId = orderIdInput.value;
+            if(mUniqueId !== undefined && mUniqueId.length >= 4){
+                queryJob(mUniqueId);
+            }
+        });
+
+        resultDiv = document.querySelector('#tracking_route');
+        resultDiv.style.visibility = 'hidden';
+    });
+
+    activity.onHidden(function() {
+
+        console.log('close');
+        if(refreshIdentifier !== null){
+            clearInterval(refreshIdentifier);
+            refreshIdentifier = null;
+        }
+    });
+
+    function initMap() {
+
+        console.log('init map');
+        map = new google.maps.Map(document.getElementById('tracking_map'), {
+            center: latestPos,
+            zoom: 15,
+            streetViewControl: false,
+            zoomControl: false,
+            scaleControl: false,
+            disableDefaultUI: true
+        });
+    }
+
+    function queryJob(uniqueId){
+
+        var blocking = phonon.indicator("", false);
+
+        $.when(queryJobDetails(uniqueId), queryJobStatus(uniqueId))
+        .fail(function(){
+
+            phonon.i18n().get(['error_home_payment'], function(values) {
+                phonon.notif(values['error_home_payment'], 2000, false, null);
+            });
+        })
+        .done(function() {
+            resultDiv.style.visibility = 'visible';
+        })
+        .always(function(){
+            blocking.close();
+        });
+    }
+
+    function setLocation(longitude, latitude) {
+
+        // clear old marker
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        
+        var updatedLoc = {lat: latitude, lng: longitude};
+
+        // add the position marker
+        var marker = new google.maps.Marker({
+            position: updatedLoc,
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
+
+        markers.push(marker);
+
+        map.setCenter(updatedLoc);
+    }
+
+    function setRefresh(jobId){
+
+        if(refreshIdentifier !== null){
+            // stop the previous call
+            clearInterval(refreshIdentifier);
+        }
+
+        // call one time first
+        $.get(apiBaseUrl + 'JobDeliveryDriver?' + 'jobId=' + jobId)
+        .success(function(trackingResult){
+
+            var trackingObj = JSON.parse(trackingResult.payload);
+            console.log(trackingObj);
+            setLocation(trackingObj.gpsLongitude, trackingObj.gpsLatitude);
+        });
+
+        // set the auto refresh
+        refreshIdentifier = setInterval(function() {
+
+            // update the map according to driver location
+            $.get(apiBaseUrl + 'JobDeliveryDriver?' + 'jobId=' + jobId)
+            .success(function(trackingResult){
+
+                var trackingObj = JSON.parse(trackingResult.payload);
+                console.log(trackingObj);
+                setLocation(trackingObj.gpsLongitude, trackingObj.gpsLatitude);
+            });
+
+        }, 10000);
+    }
+
+    function queryJobDetails(uniqueId) {
+
+        return $.Deferred(function(d1){
+
+            $.get(apiBaseUrl + 'job?' + 'uniqueId=' + uniqueId)
+                .success(function(result){
+                    
+                    if(result === undefined){
+                        console.log('failed to request job details');
+                        return d1.reject();
+                    }
+
+                    if(result.success === false){
+                        console.log('request job details return false');
+                        return d1.reject();
+                    }
+
+                    var orderDetails = JSON.parse(result.payload);
+                    console.log(orderDetails);
+
+                    document.getElementById('tracking_orderid').text = mUniqueId;
+                    document.getElementById('tracking_pickupTime').text = orderDetails.deliveryDate;
+
+                    // stop the previous thread if any
+                    if(refreshIdentifier !== null){
+                        // stop the previous call
+                        clearInterval(refreshIdentifier);
+                        refreshIdentifier = null;
+                    }
+
+                    if(orderDetails.jobStatusId === '4' ||
+                        orderDetails.jobStatusId === '5'){  //picking up or delivering
+
+                        // refresh the map
+                        setRefresh(orderDetails.jobId);
+
+                    } else if (orderDetails.jobStatusId === '6') { // delivered
+                        // set the map to destination
+                        var destination = orderDetails.addressTo[0];
+                        if(destination !== undefined){
+
+                            setLocation(destination.gpsLongitude, destination.gpsLatitude);
+                        }
+
+                    } else {
+                        // set the map to pick up address
+                        var pickup = orderDetails.addressFrom[0];
+                        if(pickup !== undefined){
+
+                            setLocation(pickup.gpsLongitude, pickup.gpsLatitude);
+                        }
+                    }
+
+                    d1.resolve();
+                })
+                .fail(function(){
+                    return d1.reject();
+                });
+        }).promise();
+    }
+
+    function queryJobStatus(uniqueId) {
+
+        return $.Deferred(function(d1){
+
+            $.get(apiBaseUrl + 'JobDeliveryStatus?' + 'uniqueId=' + uniqueId)
+                .success(function(result){
+                    
+                    if(result === undefined){
+                        console.log('failed to request job details');
+                        return d1.reject();
+                    }
+
+                    if(result.success === false){
+                        console.log('request job details return false');
+                        return d1.reject();
+                    }
+
+                    console.log(result);
+
+                    var jobStatus = JSON.parse(result.payload);
+                    var tableData = new Array();
+                    tableData.push(["Date & Time", "Status"]);
+
+                    jobStatus.orderStatus.forEach(function(jobOrderStatus){
+
+                        tableData.push([jobOrderStatus.last_modified_date, jobStatusArray[jobOrderStatus.job_status_id]]);
+                    });
+
+                    //Create a HTML Table element.
+                    var table = document.createElement("TABLE");
+                    table.border = "0";
+                 
+                    //Get the count of columns.
+                    var columnCount = tableData[0].length;
+
+                    //Add the data rows.
+                    for (var i = 1; i < tableData.length; i++) {
+                        row = table.insertRow(-1);
+                        for (var j = 0; j < columnCount; j++) {
+                            var cell = row.insertCell(-1);
+                            cell.innerHTML = tableData[i][j];
+                        }
+                    }
+
+                    var dvTable = document.getElementById("tracking_dvtable");
+                    dvTable.innerHTML = "";
+                    dvTable.appendChild(table);
+
+                    d1.resolve();
+
+                })
+                .fail(function(){
+                    return d1.reject();
+                });
+        }).promise();
+
+
+
+
+
+
+
+        // // generate the table runtime
+        // var customers = new Array();
+        // customers.push(["Date/Time", "Activity", "Location"]);
+        // customers.push([1, "John Hammond"]);
+        // customers.push([2, "Mudassar Khan"]);
+        // customers.push([3, "Suzanne Mathews"]);
+        // customers.push([4, "Robert Schidner"]);
+     
+        // //Create a HTML Table element.
+        // var table = document.createElement("TABLE");
+        // table.border = "0";
+     
+        // //Get the count of columns.
+        // var columnCount = customers[0].length;
+     
+        // //Add the header row.
+        // var row = table.insertRow(-1);
+        // for (var i = 0; i < columnCount; i++) {
+        //     var headerCell = document.createElement("TH");
+        //     headerCell.innerHTML = customers[0][i];
+        //     row.appendChild(headerCell);
+        // }
+     
+        // //Add the data rows.
+        // for (var i = 1; i < customers.length; i++) {
+        //     row = table.insertRow(-1);
+        //     for (var j = 0; j < columnCount; j++) {
+        //         var cell = row.insertCell(-1);
+        //         cell.innerHTML = customers[i][j];
+        //     }
+        // }
+     
+        // var dvTable = document.getElementById("tracking_dvtable");
+        // dvTable.innerHTML = "";
+        // dvTable.appendChild(table);
+    }
+
 });
 
 app.on({page: 'stepone', content: 'stepone.html'}, function(activity){
@@ -581,17 +879,6 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
         }
     }
 
-    var onAddressFrom = function(evt) {
-        
-        phonon.panel('#panel-location').open();
-
-        // to show the map
-        google.maps.event.trigger(map, 'resize');
-        google.maps.event.trigger(panorama, 'resize');
-
-        map.setCenter(latestPos);
-    }
-
     activity.onReady(function(){
         // setup the location base on the postcode insert
         console.log(fromLocation);
@@ -798,14 +1085,6 @@ app.on({page: 'steptwo', content: 'steptwo.html'}, function(activity){
 
         ga('send', 'event', 'mobile', 'click', 'promo_code');
     }; 
-
-    var latestPos = {lat: 3.1371243, lng: 101.596567};
-    var map;
-    var panorama;
-
-    function initializeGoogle() {
-
-    }
 }); // step2 page end
 
 app.on({page: 'confirm', content: 'confirm.html'}, function(activity){
@@ -1210,10 +1489,21 @@ app.on({page: 'home', content: 'home.html'}, function(activity){
     
     var newOrderBtn = null;
     var makePaymentBtn = null;
+    var trackingBtn = null;
+    var ikeaDeliveryBtn = null;
 
     var bookingDialog = null;
 
     activity.onCreate(function(){
+
+        // if (typeof(Storage) !== undefined) {
+        //     // load the languages user last set
+        //     var locale = localStorage.getItem("locale");
+        //     console.log(locale);
+        //     if(locale !== undefined && locale !== null){
+        //         phonon.updateLocale(locale);
+        //     }
+        // }
 
         // get the passed in param
         var queryStr = QueryString;
@@ -1226,6 +1516,8 @@ app.on({page: 'home', content: 'home.html'}, function(activity){
 
         newOrderBtn = document.querySelector('#home_new');
         makePaymentBtn = document.querySelector('#home_payment');
+        trackingBtn = document.querySelector('#home_orderstatus');
+        ikeaDeliveryBtn = document.querySelector('#home_ikea');
 
         if(newOrderBtn !== null){
             newOrderBtn.on('tap', function(evt){
@@ -1254,14 +1546,42 @@ app.on({page: 'home', content: 'home.html'}, function(activity){
                     displayPaymentError();
             });
         });
+
+
+        if(trackingBtn !== null){
+            trackingBtn.on('tap', function(evt){
+                app.changePage('tracking');
+                return;
+            });
+        }
+
+        if(ikeaDeliveryBtn !== null){
+            ikeaDeliveryBtn.on('tap', function(evt){
+                //window.location.href = 'https://ikea.justlorry.com';
+                window.open(
+                    'https://ikea.justlorry.com',
+                    '_blank'
+                );
+                return;        
+            });
+        }
     });
 
     activity.onReady(function() {
 
         console.log(phonon.device.os);
-        if(phonon.device.os == 'Android') {
-            Android.StartGpsTracking("test123");
+        try {
+
+            if(phonon.device.os === 'Android') {
+                Android.StartGpsTracking("test123");
+            } else if(phonon.device.os === 'iOS') {
+                JSCall.StartGpsTracking("test444");
+            }
+        } catch(e) {
+
+            console.log(e);
         }
+
     });
 
     var onPayment = function(evt) {

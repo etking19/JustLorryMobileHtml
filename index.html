@@ -80,6 +80,8 @@
           ga('create', 'UA-81918831-1', 'auto');
         </script>
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArNVgfBbl4WUqHdu-ycAE-pL0TGvok8Us&libraries=places"></script>
+
     </head>
     <body>
 
@@ -108,7 +110,7 @@
                 </ul>
                 <div style="position: absolute; bottom: 0px; text-align: center; width: 100%; padding-bottom: 10px">
                     <a data-i18n="text: leftpanel_version" class="left-panel-desc"></a>
-                    <a class="left-panel-desc">1.0.1.2</a>
+                    <a class="left-panel-desc">1.0.3.4</a>
                 </div>
             </div>
         </div>
@@ -135,7 +137,10 @@
                     <div style="text-align: center; width: 100%; padding-top:20px">
                         <a class="btn delivery-size-text selected" href="mailto:care@justlorry.com?Subject=Enquiry" target="_top" data-i18n="text: about_panel_contact" style="padding-top: 5px;">
                         </a>
-                        
+                    </div>
+                    <div style="text-align: center; width: 100%; padding-top:20px">
+                        <a class="btn delivery-size-text selected" href="tel:+60125125878"  data-i18n="text: about_panel_phone" style="padding-top: 5px;">
+                        </a>
                     </div>
                 </div>
             </div> <!-- end of content -->
@@ -642,7 +647,8 @@
         <stepone data-page="true"></stepone>
         <steptwo data-page="true"></steptwo>
         <confirm data-page="true"></confirm>
-        <payment data-page="true"></payment>
+        <payment data-page="true" data-nocache="true"></payment>
+        <tracking data-page="true" data-nocache="true"></tracking>
         
 		<script src="res/moment-with-locales.min.js"></script>
         <script src="dist/js/phonon.js"></script>
@@ -653,8 +659,6 @@
             $("#divRefund").load("res/assets/ReturnAndRefundPolicy.html");
             $("#divTerms").load("res/assets/TermsOfUse.html");
         </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArNVgfBbl4WUqHdu-ycAE-pL0TGvok8Us&libraries=places"></script>
     </body>
 </html>
         

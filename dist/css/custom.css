@@ -89,6 +89,14 @@ Home
 	background: url(../../res/img/payment_128x64.png) no-repeat; 
 }
 
+#home_orderstatus {
+	background: url(../../res/img/tracking_128x64.png) no-repeat; 
+}
+
+#home_ikea {
+	background: url(../../res/img/ikea_128x64.png) no-repeat; 
+}
+
 /*
 Step one page
 */

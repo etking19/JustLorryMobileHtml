@@ -10,7 +10,8 @@
     "about_panel_desc_1" : "JustLorry 是一家注册的物流公司，使用人和软件来管理运输的复杂性。",
     "about_panel_desc_2" : "从巴生谷或槟城到柔佛的运输过程非常复杂。 目前，这是通过电话，电子表格和传真机的协调。 JustLorry 提供了一个基于网络的应用程序，简单化整个运输过程。 我们不仅仅是一个软件平台，我们拥有经验丰富的物流和人力管理的专家在这里帮助，以简单化的流程和确保您的货物顺利送达目的地。",
     "about_panel_desc_3" : "JustLorry 是一个互联网时代的物流公司。",
-    "about_panel_contact" : "联系我们",
+    "about_panel_contact" : "电邮我们",
+    "about_panel_phone" : "联系我们",
 
     "button_ok" : "OK",
     "button_cancel" : "取消",
@@ -24,11 +25,17 @@
     
     "home_new" : "新订单",
     "home_payment" : "付款",
+    "home_orderstatus" : "订单追踪",
+    "home_ikea" : "宜家订购",
 
     "home_payment_orderId_title" : "预订预订ID",
     "home_payment_orderId_placeholder" : "在这里输入您的预订ID。",
 
     "error_home_payment" : "未找到记录。 请确保您输入正确的预订ID。",
+
+    "tracking_orderId_placeholder" : "在这里输入您的预订ID。",
+    "tracking_orderId" : "预订预订ID:",
+    "tracking_pickup_date" : "提取日期和时间:",
 
     "service_standard":"标准运输",
     "service_disposal":"丢弃服务",
@@ -172,6 +179,7 @@
     "steptwo_title":"信息",
     "confirmation_title": "确认",
     "payment_title" : "付款",
+    "tracking_title" : "订单跟踪",
 
     "footer_company" : "Just Supply Chain Berhad (1193116-H)"
     

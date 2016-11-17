@@ -1,0 +1,77 @@
+<tracking class="app-page">
+    
+    <header class="header-bar">
+        <button class="btn pull-left icon icon-arrow-back" data-navigation="$previous-page"></button>
+        <div class="center">
+            <h1 class="title" data-i18n="text: tracking_title"></h1>
+        </div>
+        <button class="btn pull-right" data-popover-id="language-popover">
+            <img src="res/img/navibar_icon_language_96x96.png" style="max-height: 80%; margin-top: 10%"/>
+        </button>
+
+        <style>
+            .tracking_title {
+                width: 30%;
+            }
+
+            .tracking_desc {
+                width: 70%;
+            }
+
+            .pad-content {
+                margin-bottom: auto !important;
+            }
+        </style>
+
+        <script>
+          //ga('send', 'pageview', 'mobile/orderstatus');
+        </script>
+
+    </header>
+
+    <div class="content pad-content">
+        <div class="padded-full">
+            
+            <div class="row">
+                <div class="phone-9 tablet-10 column">
+                    <input id="tracking_id" type="text" minlength="4" maxlength="7" data-i18n="placeholder: tracking_orderId_placeholder" style="font-size:1.5em; text-align:center" required>
+                </div>
+                <div class="phone-3 tablet-2 column" style="text-align:center">
+                    <img id="tracking_confirm" style="max-height:48px" src="res/img/search_icon_96x96.png">
+                    </img>
+                </div>
+            </div>
+
+            <div id="tracking_route" class="row" style="margin-top: 10px">
+
+                <div class="row">
+                    <div class="column phone-5">
+                        <a data-i18n="text: tracking_orderId"></a>
+                    </div>
+                    <div class="column phone-7">
+                        <a id="tracking_orderid"></a>
+                    </div>
+                </div>                
+
+                <div class="row" style="margin-top: 5px">
+                    <div class="column phone-5">
+                        <a data-i18n="text: tracking_pickup_date"></a>
+                    </div>
+                    <div class="column phone-7">
+                        <a id="tracking_pickupTime"></a>
+                    </div>
+                </div>
+
+                <div class="row" style="min-width: 100px; min-height: 200px; margin-top:10px">
+                    <div class="phone-12" id="tracking_map" style="min-width: 100px; min-height: 200px; height: 100%"></div>
+                </div>
+                
+                <div class="row phone-12" style="margin-top: 10px">
+                    <div class="phone-12" id="tracking_dvtable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</tracking>
+
+

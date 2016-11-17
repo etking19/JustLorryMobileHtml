@@ -10,7 +10,8 @@
     "about_panel_desc_1" : "JustLorry is a registered transportation company that uses people and software to manage the complexity of delivery.",
     "about_panel_desc_2" : "Delivering something from Klang Valley or Penang to Johore requires complex coordination. Currently that’s done by telephones, spreadsheets, and fax machines. JustLorry provides a web-based app that offers real-time visibility of your deliveries. And we’re not just a software platform: Our experienced logistics and human management experts are here to help at every step of the way.",
     "about_panel_desc_3" : "JustLorry is a transportation company for the Internet age.",
-    "about_panel_contact" : "Contact Us",
+    "about_panel_contact" : "Email Us",
+    "about_panel_phone" : "Call Us",
 
     "button_ok" : "OK",
     "button_cancel" : "Cancel",
@@ -24,11 +25,19 @@
     
     "home_new" : "New Order",
     "home_payment" : "Make Payment",
+    "home_orderstatus" : "Tracking",
+    "home_ikea" : "IKEA Delivery",
 
     "home_payment_orderId_title" : "Booking ID",
     "home_payment_orderId_placeholder" : "Enter your booking id here.",
 
     "error_home_payment" : "Record not found. Please make sure you enter correct booking id.",
+
+
+    "tracking_orderId_placeholder" : "Enter your booking id here.",
+    "tracking_orderId" : "Order ID:",
+    "tracking_pickup_date" : "Schedule pickup:",
+
 
     "service_standard":"Standard",
     "service_disposal":"Disposal",
@@ -172,6 +181,7 @@
     "steptwo_title":"Information",
     "confirmation_title": "Confirmation",
     "payment_title" : "Payment",
+    "tracking_title" : "Order Tracking",
 
     "footer_company" : "Just Supply Chain Berhad (1193116-H)"
     
